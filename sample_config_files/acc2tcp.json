@@ -1,0 +1,23 @@
+{
+	"tasks": [
+		{
+			"type": "DirectInputReader",
+			"id": "AccInput"
+		},
+		{
+			"type": "TCPWriter",
+			"id": "AccOutput",
+			"port":7777,
+			"encoder": { "type":"TimestampedLinesEncoder" }
+		}
+	],
+	
+	"connections": [
+		{
+			"type": "Connection",
+			"sourceTask": "AccInput",
+			"destTask": "AccOutput"
+		}
+	]
+	
+}

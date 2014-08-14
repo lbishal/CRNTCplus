@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>  
+<resources> 
+
+    <string name="app_name">CRN Toolbox Center+</string>
+    <string name="app_name_version">CRN Toolbox Center 1.0</string>
+    <string name="app_copyright">Copyright 2010-2011 Jakob Weigert</string>
+ 
+    <string name="about_text">The CRN Toolbox Center was developed by Jakob Weigert, University of Passau as part of his Bachelor Thesis \"The Context Recognition Network Toolbox on Android\" at the Embedded Systems Lab, Department of Informatics and Mathematics, University of Passau. This software is open source. Project repository: http://redmine.esl.fim.uni-passau.de</string>
+
+    <string name="button_start_toolbox_configfile">Start Toolbox with config file</string>
+    <string name="button_start_toolbox_controlport">Start Toolbox with control port</string>
+    <string name="button_stop_toolbox">Toolbox is running - touch to stop</string>
+    <string name="button_stopping_toolbox">Toolbox is stopping...</string>
+    <string name="button_wait">Please wait...</string>
+    
+    <string name="dialog_tools_button_kill">Kill CRN Toolbox Center process</string> 
+    <string name="dialog_tools_kill_text">To definitely end the app, service and the Toolbox library (e.g. if a socket was not closed properly):</string>
+    <string name="cancel">Cancel</string>
+     
+    <string name="toolboxinfo_tabname">Info</string>
+    <string name="toolboxinfo_libinfo">Toolbox library info:</string>
+    <string name="toolboxinfo_default_content">[No information available]</string>
+    <string name="toolboxinfo_tools">Tools:</string>
+    <string name="toolboxinfo_toolbox_status">Toolbox status protocol:</string>
+    <string name="toolboxinfo_app_started">CRN Toolbox Center started.</string>
+    <string name="toolboxinfo_toolbox_started">Toolbox started.</string>
+    <string name="toolboxinfo_toolbox_stopped">Toolbox stopped.</string>
+    <string name="toolboxinfo_direct_input_started">DirectInput started.</string>
+    <string name="toolboxinfo_direct_input_stopped">DirectInput stopped.</string> 
+
+    <string name="configfile_tabname">ConfigFile</string>
+    <string name="configfile_path">Path to Toolbox configuration file (.json):</string>
+    <string name="configfile_button_select_file">Browse...</string>
+    <string name="configfile_checkbox_auto_direct_input">Auto start/stop appropriate DirectInput</string>
+    <string name="configfile_not_fond">Error: Configuration file not found</string>
+    <string name="configfile_no_file">Error: No file selected</string>
+    
+    <string name="directinput_tabname">DirectInput</string>
+    <string name="directinput_send_readings">Send readings of the checked sensors:</string>
+    <string name="directinput_checkbox_acc">Accelerometer\t\t(to AccInput)</string>
+    <string name="directinput_checkbox_mag">Magnetic field\t\t(to MagInput)</string>
+    <string name="directinput_checkbox_ori">Orientation\t\t\t(to OriInput)</string>
+    <string name="directinput_checkbox_light">Light\t\t\t\t\t\t\t(to LightInput)</string>
+    <string name="directinput_checkbox_prox">Proximity\t\t\t\t(to ProxInput)</string>
+    <string name="directinput_checkbox_gps">GPS\t\t\t\t\t\t\t(to GPSInput)</string>
+    <string name="directinput_sensor_rate">Sensor reading rate:</string>
+    <string name="directinput_button_start">Start DirectInput</string>
+    <string name="directinput_button_stop">DirectInput is running - touch to stop</string>
+    
+    <string name="controlport_tabname">ControlPort</string>
+    <string name="controlport_controlport">Control port: </string>
+
+    <string name="menu_tools">Tools...</string>
+    <string name="menu_log">Toolbox log...</string>
+    <string name="menu_about">About...</string>
+    
+    <string name="dialog_title_tools">Tools</string>
+    <string name="dialog_title_log">Toolbox log messages</string>
+    <string name="dialog_title_about">About CRN Toolbox Center</string>
+
+    <string name="lastCat_text">Last category:</string>
+    <string name="lastAct_text">Last activity:</string>
+    <string name="back_btn_act">Back to categories</string>
+    <string name="edit_btn_act">Edit activities</string>
+    <string name="done_btn_act">Done</string>
+    
+    <string name="actlog_tabname">ACTLog</string> 
+    <string name="act_name">Activity screen</string>
+    <string name="cat_name">Category screen</string>
+    <string name="show_all_btn_act">Show all</string>
+    <string name="hide_all_btn_act">Hide all</string>
+    <string name="comment_btn_act">Add comment</string>
+    <string name="add_btn_act">Add activity</string>
+    <string name="delete_btn_act">Delete activity</string>
+    <string name="main_title">Choose activity category</string>
+    <string name="activity_title">Choose activity</string>
+    
+    <string name="hold_selection_select_msg">Please hold category to select it</string>
+    <string name="hold_selection_delete_msg">Please hold category to delete it</string>
+    <string name="activity_deleted_msg">Activity deleted!</string>
+    <string name="activity_logged_msg">Activity logged!</string>
+    <string name="ticker_text_notification">Would you like to log an activity?</string>
+    <string name="content_text_notification">Reminder</string>
+    
+    <string name="io_exception_conf_err">Error when trying to open config file</string>
+    <string name="io_exception_log_err">Error when trying to open log file</string>
+    <string name="json_prefs_err">Error reading preferences from config file</string>
+    <string name="json_activities_err">Error reading activities from config file</string>
+    <string name="json_lastinfo_err">Error reading last activity from config file</string>
+    <string name="json_write_err">Error writing JSON code</string>
+    <string name="activity_exists_err">Activity already exists</string>
+    <string name="activity_in_category_err">Activity already in category</string>
+    <string name="activity_notfound_err">Activity not found</string>
+    <string name="activity_notuser_created_err">Activity is not created by the user</string>
+    <string name="sd_readonly_err">SD-card is read only</string>
+    <string name="sd_noreadandwrite_err">SD-card cannot be read</string>
+    <string name="fatal_error_act">Fatal error!</string>
+    <string name="ok_act">Ok</string>
+    <string name="json_CRNTC_not_found">CRNTC+ section not found in configuration file</string>
+    <string name="json_CRNTC_error">There is an error in the CRNTC+ section of the configuration file</string>
+    <string name="json_CRNT_not_found">CRNT section not found in configuration file</string>
+    <string name="json_CRNT_error">There is an error in the CRNT section of the configuration file</string>
+    <string name="json_CRNTC_no_type">No type specified for module</string>
+    <string name="json_CRNTC_unknown_module">Unkown module found, continueing anyway</string>
+    
+    
+    <string name="simple_graph_tabname">Simple Graph</string>
+    
+    <string name="android_plot_tabname">AndroidPlot</string>
+</resources>

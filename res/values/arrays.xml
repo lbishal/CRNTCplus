@@ -1,0 +1,10 @@
+<resources>
+
+    <string-array name="sensorReadingRates">
+        <item>NORMAL</item>
+        <item>UI</item>
+        <item>GAME</item>
+        <item>FASTEST</item>
+    </string-array>
+    
+</resources>

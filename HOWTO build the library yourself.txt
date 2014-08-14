@@ -1,0 +1,176 @@
+CRN Toolbox Center - How to build the library yourself
+Copyright 2010-2011 Jakob Weigert, University of Passau
+weigert@fim.uni-passau.de
+===================================================================
+
+
+How to build the CRN Toolbox library for Android yourself
+-------------------------------------------------------------------
+
+This HOWTO describes the cross-compile build process for the
+CRN Toolbox library to run on Android. Therefore, CMake and the
+CMake branch of the CRN Toolbox at crnt/branches/toolbox_cmake
+is used. Repository: redmine.esl.fim.uni-passau.de
+
+
+
+Requirements
+-------------------------------------------------------------------
+
+- Linux operating system (tested with Ubuntu 10.10 x86)
+
+- CMake 2.8.1 or higher (e.g. sudo apt-get install cmake)
+
+- Recommended: Android SDK (http://developer.android.com/sdk)
+
+- Android NDK r5b (http://developer.android.com/sdk/ndk)
+
+- Subversion
+
+- To get library into new CRN Toolbox Center:
+	- Eclipse Galileo or higher
+	- Android SDK (http://developer.android.com/sdk)
+
+
+
+Checkout toolbox_cmake
+-------------------------------------------------------------------
+
+Using your Subversion client, checkout the toolbox_cmake project at:
+
+https://redmine.esl.fim.uni-passau.de/svn/crnt/branches/toolbox_cmake
+
+
+
+Create your toolchain
+-------------------------------------------------------------------
+
+In your Android NDK, have a look at the instructions in
+docs/STANDALONE-TOOLCHAIN.html at the section
+"3/ Invoking the compiler (the easy way)".
+
+Create a toolchain out of the NDK using a command similar to this:
+
+$NDK/build/tools/make-standalone-toolchain.sh --platform=android-5 --install-dir=/usr/local/android-toolchain
+
+
+
+The ToolchainFile
+-------------------------------------------------------------------
+
+CMake can use a so called ToolchainFile to easily cross-compile and
+build a project.
+
+For the CRN Toolbox, the ToolchainFile for Android is located at:
+
+toolbox_cmake/cmake/Modules/SCMP/platform/ToolchainFileAndroid.cmake
+
+- Have a look at the instructions in the ToolchainFile and adjust
+  the path of your Android toolchain location. Save the file.
+
+
+
+The build process
+-------------------------------------------------------------------
+
+- In the root directory of your toolbox_cmake checkout, create a
+  build directory, e.g. "build/" and navigate into it in a terminal.
+
+- Let CMake configure the project for Android with the command:
+
+cmake -DCMAKE_TOOLCHAIN_FILE=../cmake/Modules/SCMP/platform/ToolchainFileAndroid.cmake -DPLATFORM_HACKS=ANDROID ..
+
+- Look at the output of the configuration process:
+	- If it ends with "Build files have been written...", you are fine.
+	- If there is a problem at beginning, when testing the compilers,
+	  consider to check your toolchain and the path to it again.
+	  Maybe you have to change the rights of the toolchain folder using
+	  chmod -R 777 android_toolchain_folder
+
+- If the configuration process was successful, build the Toolbox with:
+
+make -j4
+
+- You can adjust the number of threads (e.g. 4) of your machine for a faster build.
+
+
+
+The build process with additional features
+-------------------------------------------------------------------
+
+Configure with feature enabled, e.g. ESL:
+
+cmake -DCMAKE_TOOLCHAIN_FILE=../cmake/Modules/SCMP/platform/ToolchainFileAndroid.cmake -DPLATFORM_HACKS=ANDROID -DFEATURE_DEVEL_TASKS_ESL_ENABLED=TRUE ..
+
+NOTE THAT YOU HAVE TO CONFIGURE AT LEAST TWICE FOR MOST FEATURES.
+Just do the same command again.
+
+Note that there may be compiler/linker errors with some features
+since the additional features (except ESL) were not tested and not
+adjusted to the Android build process. You may have to leave out
+classes or to add patches to the code.
+
+Build with make.
+
+
+
+Location of the built library
+-------------------------------------------------------------------
+
+Inside your build directory, the built Toolbox library is located at:
+
+src/main/libcrnt.0.2.0
+
+If you want to use it for the CRN Toolbox Center, copy it to
+"CRN Toolbox Center/libs/armeabi/libcrnt.so" (rename it!).
+
+Optional information:
+There is also built an executable crntoolbox, which runs along with
+the libcrnt.so renamed to libcrnt.so.4 on rooted Android devices
+or on the Android emulator in the shell or a terminal when setting:
+LD_LIBRARY_PATH=/path/to/libcrnt:$LD_LIBRARY_PATH
+Nevertheless, Android doesn't support cout, cerr and clog. So you
+won't see any output printings of the Toolbox.
+
+
+
+Get the library into the CRN Toolbox Center
+-------------------------------------------------------------------
+
+You could try to just replace the libcrnt.so in the .apk package
+with the new one, but there is no guarantee for this to work.
+
+To do it properly, use Eclipse with the Android SKD and import the
+"CRN Toolbox Center" project. Replace the library in libs/armeabi.
+
+IMPORTANT: You have to make a "fake change" to the code of the
+CRN Toolbox Center (just make a space), due to a bug in the Android
+SDK, that does not recognize a changed native library and would
+not build a new .apk package.
+
+Look at: http://developer.android.com/guide/developing/device.html
+Click Run to deploy and run the application on a connected device.
+
+
+
+Further information about the Toolbox and the CMake branch
+-------------------------------------------------------------------
+http://www.esl.fim.uni-passau.de/~fleitl/doc/crnt-daily/
+https://redmine.esl.fim.uni-passau.de/projects/crnt
+http://wiki.esl.fim.uni-passau.de/index.php/CRN_Toolbox (non-CMake)
+
+
+
+Further information about Android and the .apk build process
+-------------------------------------------------------------------
+http://developer.android.com/sdk
+http://developer.android.com/sdk/ndk
+http://developer.android.com/guide/developing/building/index.html
+
+
+
+
+||| Please send any questions, comments and bugs to
+||| weigert@fim.uni-passau.de - thanks!
+
+

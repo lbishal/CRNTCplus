@@ -1,0 +1,54 @@
+{
+	"tasks": [
+		{
+			"type": "DirectInputReader",
+			"id": "MagInput"
+		},
+		{
+			"type": "DirectInputReader",
+			"id": "OriInput"
+		},
+		{
+			"type": "DirectInputReader",
+			"id": "GPSInput"
+		},
+
+		{
+			"type": "TCPWriter",
+			"id": "MagOutput",
+			"port": 7771,
+			"encoder": { "type":"TimestampedLinesEncoder" }
+		},
+		{
+			"type": "TCPWriter",
+			"id": "OriOutput",
+			"port": 7772,
+			"encoder": { "type":"TimestampedLinesEncoder" }
+		},
+		{
+			"type": "TCPWriter",
+			"id": "GPSOutput",
+			"port": 7773,
+			"encoder": { "type":"TimestampedLinesEncoder" }
+		}
+	],
+	
+	"connections": [
+		{
+			"type": "Connection",
+			"sourceTask": "MagInput",
+			"destTask": "MagOutput"
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "OriInput",
+			"destTask": "OriOutput"
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "GPSInput",
+			"destTask": "GPSOutput"
+		}
+	]
+	
+}

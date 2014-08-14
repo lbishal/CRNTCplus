@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+	<ScrollView android:layout_width="fill_parent"
+		android:layout_height="fill_parent">
+
+		<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			android:layout_width="fill_parent" android:layout_height="fill_parent"
+			android:orientation="vertical">
+
+			<TextView android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:text="@string/directinput_send_readings"></TextView>
+			<CheckBox android:id="@+id/CheckBoxAcc"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:text="@string/directinput_checkbox_acc" android:layout_marginBottom="-5dip"></CheckBox>
+			<CheckBox android:id="@+id/CheckBoxMag"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:text="@string/directinput_checkbox_mag" android:layout_marginBottom="-5dip"></CheckBox>
+			<CheckBox android:id="@+id/CheckBoxOrientation"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:text="@string/directinput_checkbox_ori" android:layout_marginBottom="-5dip"></CheckBox>
+			<CheckBox android:id="@+id/CheckBoxLight"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:text="@string/directinput_checkbox_light" android:layout_marginBottom="-5dip"></CheckBox>
+			<CheckBox android:id="@+id/CheckBoxProximity"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:text="@string/directinput_checkbox_prox" android:layout_marginBottom="-5dip"></CheckBox>
+			<CheckBox android:id="@+id/CheckBoxGPS"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:text="@string/directinput_checkbox_gps" android:layout_marginBottom="-5dip"></CheckBox>
+
+
+
+
+			<LinearLayout android:orientation="horizontal"
+				android:layout_height="wrap_content" android:layout_width="fill_parent"
+				android:baselineAligned="true">
+				<TextView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:text="@string/directinput_sensor_rate"
+					android:layout_gravity="center_vertical" android:layout_weight="1"></TextView>
+				<Spinner android:id="@+id/SpinnerReadingRate"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:layout_gravity="center_vertical" android:layout_weight="1"></Spinner>
+			</LinearLayout>
+
+
+
+
+			<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+				android:orientation="horizontal" android:layout_width="fill_parent"
+				android:layout_height="wrap_content">
+
+				<ToggleButton android:id="@+id/ButtonStartDirectInput"
+					android:layout_width="wrap_content" android:layout_height="55dip"
+					android:textOff="@string/directinput_button_start" android:textOn="@string/directinput_button_stop"
+					android:layout_weight="1"></ToggleButton>
+
+				<!--
+					Button android:id="@+id/ButtonStopDirectInput"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="@string/directinput_button_stop"
+					android:layout_weight="1"></Button>
+				-->
+
+
+			</LinearLayout>
+
+
+
+
+
+		</LinearLayout>
+	</ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,24 @@
+{
+	"tasks": [
+		{
+			"type": "DirectInputReader",
+			"id": "GPSInput"
+		},
+		{
+			"type": "UDPWriter",
+			"id": "GPSOutput",
+			"host": "192.168.2.34",
+			"port":8888,
+			"encoder": { "type":"TimestampedLinesEncoder" }
+		}
+	],
+	
+	"connections": [
+		{
+			"type": "Connection",
+			"sourceTask": "GPSInput",
+			"destTask": "GPSOutput"
+		}
+	]
+	
+}

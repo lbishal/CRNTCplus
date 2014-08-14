@@ -1,0 +1,57 @@
+{
+	"tasks": [
+		{
+			"type": "DirectInputReader",
+			"id": "AccInput"
+		},
+		{
+			"type": "DirectInputReader",
+			"id": "OriInput"
+		},
+		{
+			"type": "DirectInputReader",
+			"id": "ProxInput"
+		},
+
+		{
+			"type": "UDPWriter",
+			"id": "AccOutput",
+			"host": "192.168.2.34",
+			"port": 8881,
+			"encoder": { "type":"TimestampedLinesEncoder" }
+		},
+		{
+			"type": "UDPWriter",
+			"id": "OriOutput",
+			"host": "192.168.2.34",
+			"port": 8882,
+			"encoder": { "type":"TimestampedLinesEncoder" }
+		},
+		{
+			"type": "UDPWriter",
+			"id": "ProxOutput",
+			"host": "192.168.2.34",
+			"port": 8883,
+			"encoder": { "type":"TimestampedLinesEncoder" }
+		}
+	],
+	
+	"connections": [
+		{
+			"type": "Connection",
+			"sourceTask": "AccInput",
+			"destTask": "AccOutput"
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "OriInput",
+			"destTask": "OriOutput"
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "ProxInput",
+			"destTask": "ProxOutput"
+		}
+	]
+	
+}

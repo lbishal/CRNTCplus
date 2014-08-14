@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+
+	<ScrollView android:layout_width="fill_parent"
+		android:layout_height="fill_parent">
+		<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			android:layout_width="fill_parent" android:layout_height="fill_parent"
+			android:orientation="vertical">
+
+			<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+				android:orientation="horizontal" android:layout_width="fill_parent"
+				android:layout_height="wrap_content" android:layout_marginLeft="5dip"
+				android:layout_marginRight="5dip" android:layout_marginTop="20dip"
+				android:layout_marginBottom="20dip">
+
+				<TextView android:layout_height="wrap_content"
+					android:text="@string/controlport_controlport"
+					android:layout_width="wrap_content"></TextView>
+
+				<EditText android:id="@+id/EditTextControlPort"
+					android:layout_height="wrap_content" android:inputType="number"
+					android:maxLength="5" android:layout_width="fill_parent"></EditText>
+			</LinearLayout>
+
+			<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+				android:orientation="horizontal" android:layout_width="fill_parent"
+				android:layout_height="wrap_content">
+
+				<ToggleButton android:id="@+id/ButtonStartControlPort"
+					android:layout_width="wrap_content" android:textOff="@string/button_start_toolbox_controlport"
+					android:textOn="@string/button_stop_toolbox" android:layout_weight="1"
+					android:layout_height="55dip"></ToggleButton>
+
+				<!--
+					Button android:id="@+id/ButtonStopControlPort"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="@string/button_stop_toolbox"
+					android:layout_weight="1"></Button
+				-->
+
+			</LinearLayout>
+
+		</LinearLayout>
+	</ScrollView>
+</LinearLayout>

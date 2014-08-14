@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+
+	<ScrollView android:layout_width="fill_parent"
+		android:layout_height="fill_parent">
+		<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			android:layout_width="fill_parent" android:layout_height="fill_parent"
+			android:orientation="vertical">
+
+			<TextView android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:text="@string/configfile_path"
+				android:layout_weight="1"></TextView>
+
+			<EditText android:id="@+id/EditTextConfigFilePath"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:layout_weight="1"></EditText>
+
+
+			<Button android:id="@+id/ButtonSelectFile" android:text="@string/configfile_button_select_file"
+				android:layout_height="wrap_content" android:layout_width="fill_parent"
+				android:layout_weight="1" android:layout_marginBottom="20dip"><requestFocus /></Button>
+
+
+			<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+				android:orientation="horizontal" android:layout_height="fill_parent"
+				android:layout_width="fill_parent" android:layout_weight="1">
+
+				<ToggleButton android:id="@+id/ButtonStartConfigFile"
+					android:textOff="@string/button_start_toolbox_configfile"
+					android:textOn="@string/button_stop_toolbox" android:layout_width="wrap_content"
+					android:layout_weight="1" android:layout_height="55dip"></ToggleButton>
+
+			</LinearLayout>
+
+		</LinearLayout>
+	</ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+
+	<ScrollView android:layout_width="fill_parent"
+		android:layout_height="fill_parent">
+		<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			android:layout_width="fill_parent" android:layout_height="fill_parent"
+			android:orientation="vertical">
+
+			<TextView android:layout_height="wrap_content"
+				android:textSize="20sp" android:textColor="#FFFFFF" android:text="@string/app_name_version"
+				android:layout_width="fill_parent" android:layout_weight="1"></TextView>
+			<TextView android:layout_height="wrap_content" android:text="@string/app_copyright"
+				android:layout_width="fill_parent" android:layout_marginBottom="10dip"
+				android:layout_weight="1"></TextView>
+
+
+
+			<!-- Lib info: -->
+
+			<TextView android:layout_height="wrap_content"
+				android:text="@string/toolboxinfo_libinfo" android:layout_width="fill_parent"
+				android:layout_weight="1"></TextView>
+			<TextView android:id="@+id/TextViewLibInfo" android:text="@string/toolboxinfo_default_content"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:layout_marginBottom="20dip" android:textColor="#FFFFFF"
+				android:layout_weight="1"></TextView>
+
+			<!-- Protocol: -->
+
+			<TextView android:layout_height="wrap_content"
+				android:text="@string/toolboxinfo_toolbox_status"
+				android:layout_width="fill_parent" android:layout_weight="1"></TextView>
+
+			<!-- ScrollView android:id="@+id/ScrollViewToolboxStatus" android:layout_width="fill_parent" 
+				android:layout_height="fill_parent" android:layout_marginBottom="20dip"> 
+				<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+				android:layout_width="fill_parent" android:layout_height="fill_parent" android:orientation="vertical"> -->
+			<TextView android:id="@+id/TextViewToolboxStatus"
+				android:text="@string/toolboxinfo_default_content"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:textColor="#FFFFFF" android:layout_weight="1"></TextView>
+			<!--</LinearLayout> </ScrollView> -->
+
+
+			<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+				android:layout_width="300dip" android:layout_height="170dip"
+				android:orientation="horizontal" android:layout_gravity="center_vertical|top">
+				<ImageView android:src="@drawable/esl_android_black"
+					android:layout_weight="0"
+					android:layout_height="fill_parent" android:layout_width="fill_parent" android:layout_gravity="center_vertical|top"/>
+			</LinearLayout>
+
+
+
+		</LinearLayout>
+	</ScrollView>
+
+</LinearLayout>

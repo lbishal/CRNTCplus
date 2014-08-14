@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:weightSum="10"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent">
+  	<!-- Buttons -->
+  	<LinearLayout
+ 	android:orientation="horizontal"
+ 	android:layout_width="fill_parent"
+  	android:layout_height="wrap_content"
+  	android:layout_weight="0">
+  		<Button
+  		android:id="@+id/backbtn_actscreen"
+  		android:layout_gravity="left"
+  		android:gravity="left"
+  		android:layout_height="wrap_content"
+  		android:layout_width="wrap_content" 
+  		android:text="@string/back_btn_act">
+  		</Button>
+  		<!-- Added linear layout in order to sort edit button to the right :p -->
+  		<Button
+  		android:id="@+id/editbtn_actscreen"
+  		android:layout_gravity="right"
+  		android:layout_height="wrap_content"
+  		android:layout_width="fill_parent"
+  		android:text="@string/edit_btn_act">
+  		</Button>
+  		
+  	</LinearLayout>
+  	   
+    <!-- Activity list and show all button -->
+    <!-- Height of list is constant, works for now but could cause trouble later on -->
+    <!-- height=260dp -->
+    <ListView
+    	android:id="@+id/actList"
+    	android:layout_weight="10"
+    	android:drawSelectorOnTop="true"
+    	android:layout_height="wrap_content" 
+    	android:layout_width="fill_parent">
+    	
+    </ListView>
+      	
+    
+    <LinearLayout
+	android:orientation="vertical"
+	android:focusable="true"
+	android:focusableInTouchMode="true"
+	android:layout_weight="0"
+	android:gravity="bottom"
+	android:layout_height="wrap_content"
+	android:layout_width="fill_parent">
+	
+    <!-- Bottom text input and buttons -->
+		
+		<LinearLayout
+ 		android:orientation="horizontal"
+ 		android:layout_width="fill_parent"
+  		android:layout_height="wrap_content">
+  			<Button
+  				android:id="@+id/commentbtn_actscreen"
+  				android:layout_gravity="left"
+  				android:gravity="left"
+  				android:layout_height="wrap_content"
+  				android:layout_width="wrap_content" 
+  				android:text="@string/comment_btn_act">
+  			</Button>
+  			<Button
+  				android:id="@+id/addbtn_actscreen"
+  				android:visibility="invisible"
+  				android:layout_height="wrap_content"
+  				android:layout_width="wrap_content"
+  				android:text="@string/add_btn_act">
+  			</Button>
+  			<Button
+    			android:id="@+id/showAllbtn"
+    			android:layout_weight="0"
+    	  		android:layout_height="wrap_content"
+  				android:layout_width="fill_parent"
+  				android:text="@string/show_all_btn_act">
+  			</Button>
+  			
+  		</LinearLayout>
+		<EditText
+    		android:id="@+id/EditText_act"
+    		android:autoText="false"
+    		android:layout_height="wrap_content"
+    		android:layout_width="fill_parent">
+   		</EditText>
+	
+		<LinearLayout 
+    	android:orientation="vertical"
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:layout_weight="0">
+  			<LinearLayout 
+    		android:orientation="horizontal"
+    		android:layout_width="fill_parent"
+    		android:layout_height="wrap_content"
+    		android:layout_weight="0">
+    			<TextView
+    				android:text="@string/lastCat_text"
+    				android:layout_gravity="left"
+    				android:layout_height="wrap_content"
+    				android:layout_width="wrap_content">
+    			</TextView>
+    			<TextView
+    				android:id="@+id/lastCat_act"
+    				android:text="Dummy"
+    				android:layout_gravity="right"
+    				android:layout_height="wrap_content"
+    				android:layout_width="wrap_content">
+    			</TextView>
+    		</LinearLayout>
+    		<LinearLayout 
+    		android:orientation="horizontal"
+    		android:layout_width="fill_parent"
+    		android:layout_height="wrap_content"
+    		android:layout_weight="0">
+    			<TextView
+    				android:text="@string/lastAct_text"
+    				android:layout_gravity="left"
+    				android:layout_height="wrap_content"
+    				android:layout_width="wrap_content">
+    			</TextView>
+    			<TextView
+    				android:id="@+id/lastAct_act"
+    				android:layout_gravity="right"
+    				android:layout_height="wrap_content"
+    				android:layout_width="wrap_content">
+    			</TextView>
+    	
+    		</LinearLayout>
+    	</LinearLayout>		
+    </LinearLayout>
+</LinearLayout>

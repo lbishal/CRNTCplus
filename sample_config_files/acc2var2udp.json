@@ -1,0 +1,42 @@
+{
+	"tasks": [
+
+		{
+			"type": "DirectInputReader",
+			"id": "AccInput"
+		},
+
+		{
+			"type": "FilterTask",
+			"id": "FilterVar",
+			"filterPlugin": {
+				"type": "VarFilter",
+				"windowSize": 100
+			}
+		},
+
+		{
+			"type": "UDPWriter",
+			"id": "AccVarOutput",
+			"host": "192.168.2.34",
+			"port": 8888,
+			"encoder": { "type":"TimestampedLinesEncoder" }
+		}
+
+
+	],
+
+	"connections": [
+		{
+			"type": "Connection",
+			"sourceTask": "AccInput",
+			"destTask": "FilterVar"
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "FilterVar",
+			"destTask": "AccVarOutput"
+		}
+	]
+
+}

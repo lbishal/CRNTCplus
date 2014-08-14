@@ -1,0 +1,58 @@
+{
+  "connections": [
+    {
+      "type": "Connection",
+      "destTask": "AccOutput",
+      "sourceTask": "AccInput"
+    },
+    {
+      "type": "Connection",
+      "destTask": "MagOutput",
+      "sourceTask": "MagInput"
+    },
+    {
+      "type": "Connection",
+      "destTask": "OriOutput",
+      "sourceTask": "OriInput"
+    }
+    
+  ],
+  "tasks": [
+    {
+      "id": "AccInput",
+      "type": "DirectInputReader"
+    },
+    {
+      "id": "MagInput",
+      "type": "DirectInputReader"
+    },
+    {
+      "id": "OriInput",
+      "type": "DirectInputReader"
+    },
+    {
+      "id": "MagOutput",
+      "type": "LoggerTask",
+      "name": "sdcard/Magfile.log",
+      "encoder": {
+        "type": "TimestampedLinesEncoder"
+      }
+    },
+    {
+      "id": "OriOutput",
+      "type": "LoggerTask",
+      "name": "sdcard/OriFile.log",
+      "encoder": {
+        "type": "TimestampedLinesEncoder"
+      }
+    },
+    {
+      "id": "AccOutput",
+      "type": "LoggerTask",
+      "name": "sdcard/Accfile.log",
+      "encoder": {
+        "type": "TimestampedLinesEncoder"
+      }
+    }
+  ]
+}

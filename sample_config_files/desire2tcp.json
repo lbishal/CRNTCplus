@@ -1,0 +1,84 @@
+{
+	"tasks": [
+		{
+			"type": "DirectInputReader",
+			"id": "AccInput"
+		},
+		{
+			"type": "DirectInputReader",
+			"id": "MagInput"
+		},
+		{
+			"type": "DirectInputReader",
+			"id": "OriInput"
+		},
+		{
+			"type": "DirectInputReader",
+			"id": "LightInput"
+		},
+		{
+			"type": "DirectInputReader",
+			"id": "ProxInput"
+		},
+
+		{
+			"type": "TCPWriter",
+			"id": "AccOutput",
+			"port": 7771,
+			"encoder": { "type":"TimestampedLinesEncoder" }
+		},
+		{
+			"type": "TCPWriter",
+			"id": "MagOutput",
+			"port": 7772,
+			"encoder": { "type":"TimestampedLinesEncoder" }
+		},
+		{
+			"type": "TCPWriter",
+			"id": "OriOutput",
+			"port": 7773,
+			"encoder": { "type":"TimestampedLinesEncoder" }
+		},
+		{
+			"type": "TCPWriter",
+			"id": "LightOutput",
+			"port": 7774,
+			"encoder": { "type":"TimestampedLinesEncoder" }
+		},
+		{
+			"type": "TCPWriter",
+			"id": "ProxOutput",
+			"port": 7775,
+			"encoder": { "type":"TimestampedLinesEncoder" }
+		}
+	],
+	
+	"connections": [
+		{
+			"type": "Connection",
+			"sourceTask": "AccInput",
+			"destTask": "AccOutput"
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "MagInput",
+			"destTask": "MagOutput"
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "OriInput",
+			"destTask": "OriOutput"
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "LightInput",
+			"destTask": "LightOutput"
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "ProxInput",
+			"destTask": "ProxOutput"
+		}
+	]
+	
+}

@@ -1,0 +1,4 @@
+set solib-search-path ./libs/armeabi
+
+file obj/local/armeabi/app_process
+target remote :5039
