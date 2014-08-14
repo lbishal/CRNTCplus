@@ -1,0 +1,374 @@
+{	
+	"CRNT+": {
+		"modules": [
+		    
+		    {
+		    	"id": "ShimmerECG1Input",
+				"type": "Shimmer",
+				"address": "00:06:66:46:9E:FC",
+				"accelerometer": true,
+				"gyroscope": false,
+				"magnetometer": false,
+				"ecg": false,
+				"egm": false,
+				"heart": false,
+				"gsr": false,
+				"strain": false,
+				"samplingrate": 100,
+				"calibrated": true,
+				"accRange": 0,
+				"gsrRange": 0
+		    },
+		   	{
+		    	"id": "ShimmerIMU1Input",
+				"type": "Shimmer",
+				"address": "00:06:66:46:B5:EA",
+				"accelerometer": true,
+				"gyroscope": false,
+				"magnetometer": false,
+				"ecg": false,
+				"egm": false,
+				"heart": false,
+				"gsr": false,
+				"strain": false,
+				"samplingrate": 100,
+				"calibrated": true,
+				"accRange": 0,
+				"gsrRange": 0
+		    },
+		    {
+		    	"id": "ShimmerECG3Input",
+				"type": "Shimmer",
+				"address": "00:06:66:46:BC:85",
+				"accelerometer": true,
+				"gyroscope": false,
+				"magnetometer": false,
+				"ecg": false,
+				"egm": false,
+				"heart": false,
+				"gsr": false,
+				"strain": false,
+				"samplingrate": 100,
+				"calibrated": true,
+				"accRange": 0,
+				"gsrRange": 0
+		    },
+		    {
+				"type": "AndroidPlot",
+				"nChannels": 1,
+				"id": "KNNGraph",
+				"tabName": "Knn",
+				"maxRange": 2,
+				"minRange": 1
+			}
+			
+  		  
+	    ]
+	    
+	},
+	"CRNT": {
+		"tasks": [
+		{
+			"type": "DirectInputReader",
+			"id": "ShimmerIMU1Input"
+		},
+		{
+			"type": "DirectInputReader",
+			"id": "ShimmerECG1Input"
+		},
+		{
+			"type": "DirectInputReader",
+			"id": "ShimmerECG3Input"
+		},
+		{
+			"type": "SelectiveSplitterTask",
+			"id": "IMU1Splitter",
+			"chSelection": [[0],[1],[2]]
+		},
+		{
+			"type": "SelectiveSplitterTask",
+			"id": "ECG1Splitter",
+			"chSelection": [[0],[1],[2]]
+		},
+		{
+			"type": "SelectiveSplitterTask",
+			"id": "ECG3Splitter",
+			"chSelection": [[0],[1],[2]]
+		},
+		{
+			"type": "FilterTask",
+			"id": "IMU1varFilterX",
+			"filterPlugin": {
+				"type": "VarFilter",
+				"windowSize": 100
+			}
+		},
+		{
+			"type": "FilterTask",
+			"id": "IMU1varFilterY",
+			"filterPlugin": {
+				"type": "VarFilter",
+				"windowSize": 100
+			}
+		},
+		{
+			"type": "FilterTask",
+			"id": "IMU1varFilterZ",
+			"filterPlugin": {
+				"type": "VarFilter",
+				"windowSize": 100
+			}
+		},
+		{
+			"type": "FilterTask",
+			"id": "ECG1varFilterX",
+			"filterPlugin": {
+				"type": "VarFilter",
+				"windowSize": 100
+			}
+		},
+		{
+			"type": "FilterTask",
+			"id": "ECG1varFilterY",
+			"filterPlugin": {
+				"type": "VarFilter",
+				"windowSize": 100
+			}
+		},
+		{
+			"type": "FilterTask",
+			"id": "ECG1varFilterZ",
+			"filterPlugin": {
+				"type": "VarFilter",
+				"windowSize": 100
+			}
+		},
+		{
+			"type": "FilterTask",
+			"id": "ECG3varFilterX",
+			"filterPlugin": {
+				"type": "VarFilter",
+				"windowSize": 100
+			}
+		},
+		{
+			"type": "FilterTask",
+			"id": "ECG3varFilterY",
+			"filterPlugin": {
+				"type": "VarFilter",
+				"windowSize": 100
+			}
+		},
+		{
+			"type": "FilterTask",
+			"id": "ECG3varFilterZ",
+			"filterPlugin": {
+				"type": "VarFilter",
+				"windowSize": 100
+			}
+		},
+		{
+			"type": "KNN",
+			"id": "knn",
+			"k": 3,
+   			"configFile": "sdcard/trainingdata_knn.json"
+		},
+		{
+			"type": "SimpleMerger",
+			"id": "merger",
+			"inports": 9
+		},
+		{
+			"type": "TransitionDetector",
+			"id": "transition",
+			"waitFor": 100
+		},
+		{
+			"type": "LoggerTask",
+			"id": "results",
+			"name": "sdcard/KNNResults.log",  
+			"encoder": {
+                                  "type": "TimestampedLinesEncoder"
+                        }
+                          	
+		},
+		{
+			"type": "DirectOutputWriter",
+			"id": "KNNGraph"
+		}
+	],
+
+	"connections": [
+		{
+			"type": "Connection",
+			"sourceTask": "ShimmerIMU1Input",
+			"sourcePort": 0,
+			"destTask": "IMU1Splitter",
+			"destPort": 0
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "IMU1Splitter",
+			"sourcePort": 0,
+			"destTask": "IMU1varFilterX",
+			"destPort": 0
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "IMU1Splitter",
+			"sourcePort": 1,
+			"destTask": "IMU1varFilterY",
+			"destPort": 0
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "IMU1Splitter",
+			"sourcePort": 2,
+			"destTask": "IMU1varFilterZ",
+			"destPort": 0
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "IMU1varFilterX",
+			"sourcePort": 0,
+			"destTask": "merger",
+			"destPort": 0
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "IMU1varFilterY",
+			"sourcePort": 0,
+			"destTask": "merger",
+			"destPort": 1
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "IMU1varFilterZ",
+			"sourcePort": 0,
+			"destTask": "merger",
+			"destPort": 2
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "ShimmerECG1Input",
+			"sourcePort": 0,
+			"destTask": "ECG1Splitter",
+			"destPort": 0
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "ECG1Splitter",
+			"sourcePort": 0,
+			"destTask": "ECG1varFilterX",
+			"destPort": 0
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "ECG1Splitter",
+			"sourcePort": 1,
+			"destTask": "ECG1varFilterY",
+			"destPort": 0
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "ECG1Splitter",
+			"sourcePort": 2,
+			"destTask": "ECG1varFilterZ",
+			"destPort": 0
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "ECG1varFilterX",
+			"sourcePort": 0,
+			"destTask": "merger",
+			"destPort": 3
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "ECG1varFilterY",
+			"sourcePort": 0,
+			"destTask": "merger",
+			"destPort": 4
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "ECG1varFilterZ",
+			"sourcePort": 0,
+			"destTask": "merger",
+			"destPort": 5
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "ShimmerECG3Input",
+			"sourcePort": 0,
+			"destTask": "ECG3Splitter",
+			"destPort": 0
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "ECG3Splitter",
+			"sourcePort": 0,
+			"destTask": "ECG3varFilterX",
+			"destPort": 0
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "ECG3Splitter",
+			"sourcePort": 1,
+			"destTask": "ECG3varFilterY",
+			"destPort": 0
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "ECG3Splitter",
+			"sourcePort": 2,
+			"destTask": "ECG3varFilterZ",
+			"destPort": 0
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "ECG3varFilterX",
+			"sourcePort": 0,
+			"destTask": "merger",
+			"destPort": 6
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "ECG3varFilterY",
+			"sourcePort": 0,
+			"destTask": "merger",
+			"destPort": 7
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "ECG3varFilterZ",
+			"sourcePort": 0,
+			"destTask": "merger",
+			"destPort": 8
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "merger",
+			"sourcePort": 0,
+			"destTask": "knn",
+			"destPort": 0
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "knn",
+			"sourcePort": 0,
+			"destTask": "results",
+			"destPort": 0
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "knn",
+			"sourcePort": 0,
+			"destTask": "KNNGraph",
+			"destPort": 0
+		}
+	]
+	}
+  
+
+}

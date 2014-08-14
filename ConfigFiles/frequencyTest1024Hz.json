@@ -1,0 +1,39 @@
+{	
+	"CRNT+": {
+		"modules": [
+		    
+		    {
+		    	"type": "RandomGenerator",
+		    	"id": "rand1Input",
+		    	"frequency": 1024
+		    }
+	    	]
+	    
+	},
+	"CRNT": {
+		"tasks": [
+			{
+				"type": "DirectInputReader",
+				"id": "rand1Input"
+			},
+			{
+ 	        	"type": "LoggerTask",
+    			"id": "Random",
+            	"encoder": {
+              		"type": "TimestampedLinesEncoder"
+            	},
+            	"name": "sdcard/frequencyTest1024Hz.log"
+            }
+		],
+		
+		"connections": [
+			{
+				"type": "Connection",
+				"sourceTask": "rand1Input",
+				"destTask": "Random"
+			}
+		]
+	
+  	}
+
+}

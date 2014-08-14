@@ -1,0 +1,43 @@
+{	
+	"CRNT+": {
+		"modules": [
+		    
+		    {
+		    	"type": "RandomGenerator",
+		    	"id": "rand1Input",
+		    	"frequency": 1024
+		    },
+			{
+				"type": "AndroidPlot",
+				"nChannels": 3,
+				"id": "Random",
+				"tabName": "ACC",
+				"maxRange": 1,
+				"minRange": 0
+			}
+	    	]
+	    
+	},
+	"CRNT": {
+		"tasks": [
+			{
+				"type": "DirectInputReader",
+				"id": "rand1Input"
+			},
+			{
+ 	        		"type": "DirectOutputWriter",
+    				"id": "Random"
+            }
+		],
+		
+		"connections": [
+			{
+				"type": "Connection",
+				"sourceTask": "rand1Input",
+				"destTask": "Random"
+			}
+		]
+	}
+  
+
+}

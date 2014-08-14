@@ -1,0 +1,184 @@
+{	
+	"CRNT+": {
+		"modules": [
+		    
+		    {
+		    	"id": "ShimmerECG3Input",
+				"type": "Shimmer",
+				"address": "00:06:66:46:9A:3F",
+				"accelerometer": true,
+				"gyroscope": false,
+				"magnetometer": false,
+				"ecg": false,
+				"egm": false,
+				"heart": false,
+				"gsr": false,
+				"strain": false,
+				"samplingrate": 100,
+				"calibrated": true,
+				"accRange": 0,
+				"gsrRange": 0
+		    },
+		    {
+				"type": "AndroidPlot",
+				"nChannels": 1,
+				"id": "KNNGraph",
+				"tabName": "Knn",
+				"maxRange": 2,
+				"minRange": 1
+			}
+			
+  		  
+	    ]
+	    
+	},
+	"CRNT": {
+		"tasks": [
+		{
+			"type": "DirectInputReader",
+			"id": "ShimmerECG3Input"
+		},
+		{
+			"type": "SelectiveSplitterTask",
+			"id": "ECG3Splitter",
+			"chSelection": [[0],[1],[2]]
+		},
+		{
+			"type": "FilterTask",
+			"id": "ECG3varFilterX",
+			"filterPlugin": {
+				"type": "VarFilter",
+				"windowSize": 100
+			}
+		},
+		{
+			"type": "FilterTask",
+			"id": "ECG3varFilterY",
+			"filterPlugin": {
+				"type": "VarFilter",
+				"windowSize": 100
+			}
+		},
+		{
+			"type": "FilterTask",
+			"id": "ECG3varFilterZ",
+			"filterPlugin": {
+				"type": "VarFilter",
+				"windowSize": 100
+			}
+		},
+		
+		{
+			"type": "KNN",
+			"id": "knn",
+			"k": 3,
+   			"configFile": "sdcard/trainingdata_knn.json"
+		},
+		{
+			"type": "SimpleMerger",
+			"id": "merger",
+			"inports": 3
+		},
+		{
+			"type": "TransitionDetector",
+			"id": "transition",
+			"waitFor": 200
+		},
+		{
+			"type": "LoggerTask",
+			"id": "results",
+			"name": "sdcard/KNNResults.log",  
+			"encoder": {
+                                  "type": "TimestampedLinesEncoder"
+                        }
+                          	
+		},
+		{
+			"type": "DirectOutputWriter",
+			"id": "KNNGraph"
+		}
+	],
+
+	"connections": [
+		{
+			"type": "Connection",
+			"sourceTask": "ShimmerECG3Input",
+			"sourcePort": 0,
+			"destTask": "ECG3Splitter",
+			"destPort": 0
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "ECG3Splitter",
+			"sourcePort": 0,
+			"destTask": "ECG3varFilterX",
+			"destPort": 0
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "ECG3Splitter",
+			"sourcePort": 1,
+			"destTask": "ECG3varFilterY",
+			"destPort": 0
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "ECG3Splitter",
+			"sourcePort": 2,
+			"destTask": "ECG3varFilterZ",
+			"destPort": 0
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "ECG3varFilterX",
+			"sourcePort": 0,
+			"destTask": "merger",
+			"destPort": 0
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "ECG3varFilterY",
+			"sourcePort": 0,
+			"destTask": "merger",
+			"destPort": 1
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "ECG3varFilterZ",
+			"sourcePort": 0,
+			"destTask": "merger",
+			"destPort": 2
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "merger",
+			"sourcePort": 0,
+			"destTask": "knn",
+			"destPort": 0
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "knn",
+			"sourcePort": 0,
+			"destTask": "transition",
+			"destPort": 0
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "transition",
+			"sourcePort": 0,
+			"destTask": "KNNGraph",
+			"destPort": 0
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "transition",
+			"sourcePort": 0,
+			"destTask": "results",
+			"destPort": 0
+		}
+	]
+	}
+  
+
+}

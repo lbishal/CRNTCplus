@@ -1,0 +1,44 @@
+{	
+	"CRNT+": {
+		"modules": [
+		    
+		    	{
+		    	"type": "SmartphoneAccelerometer",
+		    	"id": "AccInput",
+		    	"nChannels": 3,
+		    	"readingRate": "FASTEST"    
+		    	
+		    },
+			{
+				"type": "SimpleGraph",
+				"nChannels": 3,
+				"id": "output",
+				"TabName": "Accelerometer"
+			}
+	    	]
+	    
+	},
+	"CRNT": {
+		"tasks": [
+			{
+				"type": "DirectInputReader",
+				"id": "AccInput"
+			},
+			{
+ 	        	"type": "DirectOutputWriter",
+    			"id": "output"
+            }
+		],
+		
+		"connections": [
+			{
+				"type": "Connection",
+				"sourceTask": "AccInput",
+				"destTask": "output"
+			}
+			
+		]
+	}
+  
+
+}

@@ -1,0 +1,86 @@
+{
+	"CRNT": {
+		"tasks": [
+		{
+			"type": "DirectInputReader",
+			"id": "Zephyr"
+		},
+		{
+			"type": "DirectInputReader",
+			"id": "BodyANT"
+		},
+		{
+			"type": "DirectOutputWriter",
+			"id": "output"
+		},
+		{
+				"type": "SimpleMerger",
+				"id": "merger",
+				"inPortLossless": true,
+				"inports": 2
+		},
+		{
+				"type": "SelectiveSplitterTask",
+				"id": "accelerationData",
+				"chSelection": [[0,1,2]]
+		}		
+		],
+		"connections": [
+		{
+			"type": "Connection",
+			"sourceTask": "Zephyr",
+			"sourcePort": 0,
+			"destTask": "merger",
+			"destPort": 1
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "accelerationData",
+			"sourcePort": 0,
+			"destTask": "merger",
+			"destPort": 0
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "merger",
+			"destTask": "output"
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "BodyANT",
+			"destTask": "accelerationData"
+		}			
+		]
+	},
+	"CRNT+": {
+		"modules": [
+		{
+			"id": "Zephyr",
+			"type": "ZephyrHxM",
+			"address": "00:07:80:51:75:6C"   
+		},
+		{
+   			"id": "BodyANT",
+   			"transmissionType": 2,
+   			"proximityTreshold": 7,
+   			"type": "BodyANT",
+   			"deviceNr": 47646,
+   			"channelNr": 0
+  		},
+  		{
+  	  		"type": "FileWriterSFTP",
+    		"id": "output",
+    		"pathname": "sdcard/running",
+    		"nChannels": 7,
+    		"append": false,
+    		"seperator": "\t\t",
+			"UnixTime": true,
+			"host": "eeebox.dnsd.me",
+			"user": "group1",
+			"port": 22,
+			"password": "ad+OfGud6",
+			"destinationFolder": "fitness"			
+		}	
+		]
+	}
+}

@@ -1,0 +1,43 @@
+{
+	"CRNT": {
+		"tasks": [
+		{
+			"type": "DirectInputReader",
+			"id": "ECG1Input"
+		},
+		{
+			"type": "LoggerTask",
+			"id": "ECG1Output",
+			"encoder": {"type": "TimestampedLinesEncoder"},
+    		"name": "sdcard/ECG1Output"
+			
+		}
+		],
+		"connections": [
+		{
+			"type": "Connection",
+			"sourceTask": "ECG1Input",
+			"destTask": "ECG1Output"
+		}
+		]
+	},
+	"CRNT+": {
+		"modules": [
+		{
+			"id": "ECG1Input",
+			"type": "Shimmer",
+			"address": "00:06:66:46:9E:FC",
+			"accelerometer": true,
+			"gyroscope": false,
+			"magnetometer": false,
+			"ecg": true,
+			"egm": false,
+			"heart": false,
+			"gsr": false,
+			"strain": false,
+			"samplingrate": 250
+   
+		}
+		]
+	}
+}

@@ -1,0 +1,72 @@
+{	
+	"CRNT+": {
+		"modules": [
+		    
+		    	{
+		    	"type": "SmartphoneOrientation",
+		    	"id": "input",
+		    	"nChannels": 3,
+		    	"readingRate": "FASTEST"    
+		    	
+		    },
+			{
+				"type": "AndroidPlot",
+				"nChannels": 3,
+				"id": "graphOutput",
+				"tabName": "Orientation"
+			}
+	    	]
+	    
+	},
+	"CRNT": {
+		"tasks": [
+			{
+				"type": "DirectInputReader",
+				"id": "input"
+			},
+			{
+				"type": "LoggerTask",
+				"id": "logOutput",
+				"encoder": {"type": "TimestampedLinesEncoder"},
+    			"name": "sdcard/OrientationLog"
+			
+			},
+			{
+ 	        	"type": "DirectOutputWriter",
+    			"id": "graphOutput"
+            },
+            {
+				"type": "SelectiveSplitterTask",
+				"id": "splitter",
+				"chSelection": [[0,1,2],[0,1,2]]
+   			}
+		],
+		
+		"connections": [
+			{
+				"type": "Connection",
+				"sourceTask": "input",
+				"sourcePort": 0,
+				"destTask": "splitter",
+				"destPort": 0
+			},
+			{
+				"type": "Connection",
+				"sourceTask": "splitter",
+				"sourcePort": 0,
+				"destTask": "logOutput",
+				"destPort": 0
+			},
+			{
+				"type": "Connection",
+				"sourceTask": "splitter",
+				"sourcePort": 1,
+				"destTask": "graphOutput",
+				"destPort": 0
+			}
+			
+		]
+	}
+  
+
+}

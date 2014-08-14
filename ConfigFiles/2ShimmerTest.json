@@ -1,0 +1,74 @@
+{
+	"CRNT": {
+		"tasks": [
+		{
+			"type": "DirectInputReader",
+			"id": "ECG1Input"
+		},
+		{
+			"type": "DirectInputReader",
+			"id": "ECG2Input"
+		},
+		{
+			"type": "LoggerTask",
+			"id": "ECG1Output",
+			"encoder": {"type": "TimestampedLinesEncoder"},
+    		"name": "sdcard/ECG1Output"
+			
+		},
+		{
+			"type": "LoggerTask",
+			"id": "ECG2Output",
+			"encoder": {"type": "TimestampedLinesEncoder"},
+    		"name": "sdcard/ECG2Output"
+			
+		}
+		],
+		"connections": [
+		{
+			"type": "Connection",
+			"sourceTask": "ECG1Input",
+			"destTask": "ECG1Output"
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "ECG2Input",
+			"destTask": "ECG2Output"
+		}
+		]
+	},
+	"CRNT+": {
+		"modules": [
+		{
+			"id": "ECG1Input",
+			"type": "Shimmer",
+			"address": "00:06:66:46:9E:FC",
+			"accelerometer": true,
+			"gyroscope": false,
+			"magnetometer": false,
+			"ecg": true,
+			"egm": false,
+			"heart": false,
+			"gsr": false,
+			"strain": false,
+			"samplingrate": 250
+   
+		},
+		{
+			"id": "ECG2Input",
+			"type": "Shimmer",
+			"address": "00:06:66:46:9A:3F",
+			"accelerometer": true,
+			"gyroscope": false,
+			"magnetometer": false,
+			"ecg": true,
+			"egm": false,
+			"heart": false,
+			"gsr": false,
+			"strain": false,
+			"samplingrate": 250
+   
+		}
+		]
+	}
+}

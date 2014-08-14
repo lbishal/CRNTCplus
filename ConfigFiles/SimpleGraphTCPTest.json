@@ -1,0 +1,39 @@
+{
+ "CRNT": {
+  "tasks": [
+   {
+    "type": "DirectInputReader",
+    "id": "AccInput"
+   },
+   {
+    "type": "TCPWriter",
+    "id": "accOutput",
+    "encoder": {"type": "TimestampedLinesEncoder"},
+    "port": 7771
+   }
+  ],
+  "connections": [
+   {
+    "type": "Connection",
+    "sourceTask": "AccInput",
+	"sourcePort": 0,
+    "destTask": "accOutput",
+	"destPort": 0
+   }
+  ]
+ },
+ "CRNT+": {"modules": [
+ {
+		    	"type": "SmartphoneAccelerometer",
+		    	"id": "AccInput",
+		    	"nChannels": 3,
+		    	"readingRate": "FASTEST"    
+		    },
+  {
+   "type": "SimpleGraphTCP",
+   "id": "accOutput",
+   "port": 7771,
+   "host": "localhost"
+  }
+ ]}
+}

@@ -1,0 +1,55 @@
+{	
+	"CRNT+": {
+		"modules": [
+		    
+		    	{
+		    	"type": "SmartphoneAccelerometer",
+		    	"id": "AccInput",
+		    	"nChannels": 3,
+		    	"readingRate": "FASTEST"    
+		    	
+		    }
+	    	]
+	    
+	},
+	"CRNT": {
+		"tasks": [
+			{
+				"type": "DirectInputReader",
+				"id": "AccInput"
+			},
+			{
+				"type":"FilterTask",
+				"id":"Filter1",
+				"filterPlugin":{
+					"type":"MeanFilter2"	
+						}
+			},
+			{
+ 	        	"type": "LoggerTask",
+			"id": "writer",
+			"encoder": {
+				"type": "IntLinesEncoder"
+				
+	       			},
+			"name":"/mnt/sdcard/ConfigFiles/simpleloggertestresult.log"
+            }
+		],
+		
+		"connections": [
+			{
+				"type": "Connection",
+				"sourceTask": "AccInput",
+				"destTask": "Filter1"
+			},
+			{
+				"type":"Connection",
+				"sourceTask":"Filter1",
+				"destTask":"output"
+			}
+			
+		]
+	}
+  
+
+}

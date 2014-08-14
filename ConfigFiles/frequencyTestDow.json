@@ -1,0 +1,44 @@
+{	
+	"CRNT+": {
+		"modules": [
+		    
+		    	{
+		    		"type": "RandomGenerator",
+		    		"id": "rand1Input",
+		    		"frequency": 250
+		    	},
+			{
+				"type": "FileWriter",
+				"id": "output",
+				"pathname": "sdcard/output",
+				"nChannels": 3,
+				"seperator": "\t\t",
+				"UnixTime": true,
+				"append": true
+			}
+	    	]
+	    
+	},
+	"CRNT": {
+		"tasks": [
+			{
+				"type": "DirectInputReader",
+				"id": "rand1Input"
+			},
+			{
+ 	        		"type": "DirectOutputWriter",
+    				"id": "output"
+            		}
+		],
+		
+		"connections": [
+			{
+				"type": "Connection",
+				"sourceTask": "rand1Input",
+				"destTask": "output"
+			}
+		]
+	}
+  
+
+}

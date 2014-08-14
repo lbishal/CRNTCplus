@@ -1,0 +1,56 @@
+{
+ "CRNT": {
+  "tasks": [
+   {
+    "type": "DirectInputReader",
+    "id": "BA1Input"
+   },
+   { 
+    "type": "DirectInputReader",
+    "id": "BA2Input"
+   },
+   {
+    "type": "LoggerTask",
+    "id": "BA1Output",
+    "encoder": {"type": "TimestampedLinesEncoder"},
+    "name": "sdcard/Ba1File"
+   },
+   {
+    "type": "LoggerTask",
+    "id": "BA2Output",
+    "encoder": {"type": "TimestampedLinesEncoder"},
+    "name": "sdcard/Ba2File"
+   }
+  ],
+  "connections": [
+   {
+    "type": "Connection",
+    "sourceTask": "BA1Input",
+    "destTask": "BA1Output"
+   },
+   {
+    "type": "Connection",
+    "sourceTask": "BA2Input",
+    "destTask": "BA2Output"
+   }
+  ]
+ },
+ "CRNT+": {"modules": [
+  {
+   "id": "BA1Input",
+   "transmissionType": 2,
+   "proximityTreshold": 2,
+   "type": "BodyANT",
+   "deviceNr": 47646,
+   "channelNr": 0
+  },
+  {
+   "id": "BA2Input",
+   "transmissionType": 2,
+   "proximityTreshold": 2,
+   "type": "BodyANT",
+   "deviceNr": 47647,
+   "channelNr": 1
+  }
+ ]}
+}

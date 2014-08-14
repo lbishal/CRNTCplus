@@ -1,0 +1,276 @@
+{	
+	"CRNT+": {
+		"modules": [
+		    
+		    {
+		    	"id": "ShimmerECG1Input",
+				"type": "Shimmer",
+				"address": "00:06:66:46:9E:FC",
+				"accelerometer": true,
+				"gyroscope": false,
+				"magnetometer": false,
+				"ecg": true,
+				"egm": false,
+				"heart": false,
+				"gsr": false,
+				"strain": false,
+				"samplingrate": 250
+     
+		    	
+		    },
+		    {
+		    	"id": "ShimmerIMU1Input",
+				"type": "Shimmer",
+				"address": "00:06:66:46:B5:EA",
+				"accelerometer": true,
+				"gyroscope": true,
+				"magnetometer": true,
+				"ecg": false,
+				"egm": false,
+				"heart": false,
+				"gsr": false,
+				"strain": false,
+				"samplingrate": 250
+		    },
+		    {
+		    	"id": "ShimmerECG2Input",
+				"type": "Shimmer",
+				"address": "00:06:66:46:9A:3F",
+				"accelerometer": true,
+				"gyroscope": false,
+				"magnetometer": false,
+				"ecg": true,
+				"egm": false,
+				"heart": false,
+				"gsr": false,
+				"strain": false,
+				"samplingrate": 250
+     
+		    	
+		    },
+		
+			 {
+      			"type": "ACTLogAnnotation",
+  				"id": "ACTLogInput",
+    			"last_info": {
+      				"last_activity": "",
+      				"last_category": ""
+    			},
+    			"preferences": {
+      				"feedback_message": true,
+      				"reminder": false,
+      				"reminder_time": 60,
+      				"add_activities": false,
+      				"feedback_message_duration": 1,
+      				"reminder_type_sound": true,
+     				"reminder_type_vibrate": true,
+      				"delete_activities": true,
+      				"reminder_type_light": true
+    			},
+    			"activities": [
+      			{
+        			"original_categories": [
+        				"General", "Seizure"
+        			],
+        			"number": 0,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Nothing"
+      			},
+      			{
+        			"original_categories": [
+        				"General"
+        			],
+        			"number": 1,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Brushing teeth"
+      			},
+      			{
+        			"original_categories": [
+        				"General"
+        			],
+        			"number": 2,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Walking"
+      			},
+      			{
+        			"original_categories": [
+        				"General"
+        			],
+        			"number": 3,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Running"
+      			},
+      			{
+        			"original_categories": [
+        				"General"
+        			],
+        			"number": 4,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Shaking hands"
+      			},
+				{
+        			"original_categories": [
+        				"General"
+        			],
+        			"number": 5,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Cutting food"
+      			},
+				{
+        			"original_categories": [
+        				"General"
+        			],
+        			"number": 6,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Drinking"
+      			},
+				{
+        			"original_categories": [
+        				"General"
+        			],
+        			"number": 7,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Using mouse"
+      			},
+				{
+        			"original_categories": [
+        				"General"
+        			],
+        			"number": 8,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Typing"
+      			},
+				{
+        			"original_categories": [
+        				"General"
+        			],
+        			"number": 9,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Writing"
+      			},
+				{
+        			"original_categories": [
+        				"General"
+        			],
+        			"number": 10,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Scratching"
+      			},
+				{
+        			"original_categories": [
+        				"Seizure"
+        			],
+        			"number": 11,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Myoclonic"
+      			},
+				{
+        			"original_categories": [
+        				"Seizure"
+        			],
+        			"number": 12,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Tonic-Clonic"
+      			},
+				{
+        			"original_categories": [
+        				"Seizure"
+        			],
+        			"number": 13,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Clonic"
+      			}																							
+    		]
+  		}  
+	    	]
+	    
+	},
+	"CRNT": {
+		"tasks": [
+			{
+				"type": "DirectInputReader",
+				"id": "ShimmerECG1Input"
+			},
+			{
+				"type": "DirectInputReader",
+				"id": "ShimmerIMU1Input"
+			},
+			{
+				"type": "DirectInputReader",
+				"id": "ShimmerECG2Input"
+			},
+			
+			{
+				"type": "DirectInputReader",
+				"id": "ACTLogInput"
+			},
+			{
+				"type": "LoggerTask",
+				"id": "logOutput",
+				"encoder": {"type": "TimestampedLinesEncoder"},
+    			"name": "sdcard/Shimmerdata"
+			
+			},
+   			{
+				"type": "SimpleMerger",
+				"id": "merger",
+				"inports": 4
+			}
+		],
+		
+		"connections": [
+			{
+				"type": "Connection",
+				"sourceTask": "ShimmerECG1Input",
+				"sourcePort": 0,
+				"destTask": "merger",
+				"destPort": 2
+			},
+			{
+				"type": "Connection",
+				"sourceTask": "ShimmerIMU1Input",
+				"sourcePort": 0,
+				"destTask": "merger",
+				"destPort": 1
+			},
+			{
+				"type": "Connection",
+				"sourceTask": "ShimmerECG2Input",
+				"sourcePort": 0,
+				"destTask": "merger",
+				"destPort": 0
+			},
+			{
+				"type": "Connection",
+				"sourceTask": "ACTLogInput",
+				"sourcePort": 0,
+				"destTask": "merger",
+				"destPort": 3
+			},
+			{
+				"type": "Connection",
+				"sourceTask": "merger",
+				"sourcePort": 0,
+				"destTask": "logOutput",
+				"destPort": 0
+			}
+			
+		]
+	}
+  
+
+}

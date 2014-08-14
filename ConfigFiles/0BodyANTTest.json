@@ -1,0 +1,33 @@
+{
+ "CRNT": {
+  "tasks": [
+   {
+    "type": "DirectInputReader",
+    "id": "BA1Input"
+   },
+   {
+    "type": "LoggerTask",
+    "id": "BA1Output",
+    "encoder": {"type": "TimestampedLinesEncoder"},
+    "name": "sdcard/Ba0File"
+   }
+  ],
+  "connections": [
+   {
+    "type": "Connection",
+    "sourceTask": "BA1Input",
+    "destTask": "BA1Output"
+   }
+  ]
+ },
+ "CRNT+": {"modules": [
+  {
+   "id": "BA1Input",
+   "transmissionType": 2,
+   "proximityTreshold": 7,
+   "type": "BodyANT",
+   "deviceNr": 0,
+   "channelNr": 0
+  }
+ ]}
+}

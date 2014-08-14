@@ -1,0 +1,66 @@
+{	
+	"CRNT+": {
+		"modules": [
+		    
+		    {
+				"id": "ECG2Input",
+				"type": "Shimmer",
+				"address": "00:06:66:46:9A:3F",
+				"accelerometer": true,
+				"gyroscope": false,
+				"magnetometer": false,
+				"ecg": true,
+				"egm": false,
+				"heart": false,
+				"gsr": false,
+				"strain": false,
+				"samplingrate": 100
+   
+			},
+			{
+				"type": "AndroidPlot",
+				"nChannels": 3,
+				"id": "ECG2ACCGraph",
+				"tabName": "ACC"
+			}
+	    	]
+	    
+	},
+	"CRNT": {
+		"tasks": [
+			{
+				"type": "DirectInputReader",
+				"id": "ECG2Input"
+			},
+			{
+ 	        	"type": "DirectOutputWriter",
+    			"id": "ECG2ACCGraph"
+            },
+            {
+				"type": "SelectiveSplitterTask",
+				"id": "splitter",
+				"chSelection": [[0,1,2]]
+   			}
+		],
+		
+		"connections": [
+			{
+				"type": "Connection",
+				"sourceTask": "ECG2Input",
+				"sourcePort": 0,
+				"destTask": "splitter",
+				"destPort": 0
+			},
+			{
+				"type": "Connection",
+				"sourceTask": "splitter",
+				"sourcePort": 0,
+				"destTask": "ECG2ACCGraph",
+				"destPort": 0
+			}
+			
+		]
+	}
+  
+
+}

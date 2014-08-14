@@ -1,0 +1,522 @@
+{	
+	"CRNT+": {
+		"modules": [
+		    
+		    {
+		    	"id": "ShimmerECG1Input",
+				"type": "Shimmer",
+				"address": "00:06:66:46:9E:FC",
+				"accelerometer": true,
+				"gyroscope": false,
+				"magnetometer": false,
+				"ecg": true,
+				"egm": false,
+				"heart": false,
+				"gsr": false,
+				"strain": false,
+				"samplingrate": 100
+		    },
+		    {
+		    	"id": "ShimmerECG2Input",
+				"type": "Shimmer",
+				"address": "00:06:66:46:9A:3F",
+				"accelerometer": true,
+				"gyroscope": false,
+				"magnetometer": false,
+				"ecg": true,
+				"egm": false,
+				"heart": false,
+				"gsr": false,
+				"strain": false,
+				"samplingrate": 100
+		    },
+		   	{
+		    	"id": "ShimmerIMU1Input",
+				"type": "Shimmer",
+				"address": "00:06:66:46:B5:EA",
+				"accelerometer": true,
+				"gyroscope": true,
+				"magnetometer": true,
+				"ecg": false,
+				"egm": false,
+				"heart": false,
+				"gsr": false,
+				"strain": false,
+				"samplingrate": 100
+		    },
+		    {
+		    	"id": "ShimmerECG3Input",
+				"type": "Shimmer",
+				"address": "00:06:66:46:BC:85",
+				"accelerometer": true,
+				"gyroscope": false,
+				"magnetometer": false,
+				"ecg": false,
+				"egm": false,
+				"heart": false,
+				"gsr": false,
+				"strain": false,
+				"samplingrate": 100
+		    },
+			{
+      			"type": "ACTLogAnnotation",
+  				"id": "ACTLogInput",
+    			"last_info": {
+      				"last_activity": "",
+      				"last_category": ""
+    			},
+    			"preferences": {
+      				"feedback_message": true,
+      				"reminder": false,
+      				"reminder_time": 60,
+      				"add_activities": true,
+      				"feedback_message_duration": 1,
+      				"reminder_type_sound": true,
+     				"reminder_type_vibrate": true,
+      				"delete_activities": true,
+      				"reminder_type_light": true
+    			},
+    			"activities": [
+      			{
+        			"original_categories": [
+        				"Waking up", "Seizure", "Morning gymnastics", "Walking to work", "End of the day" 
+        			],
+        			"number": 0,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Nothing"
+      			},
+		       {
+        			"original_categories": [
+        				"Waking up"
+        			],
+        			"number": 1,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Lying on a bed"
+      		       },
+		       {
+        			"original_categories": [
+        				"Waking up"
+        			],
+        			"number": 2,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Getting dressed"
+      		       },
+		       {
+        			"original_categories": [
+        				"Waking up"
+        			],
+        			"number": 3,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Stand up"
+      		       },
+		       {
+        			"original_categories": [
+        				"Waking up", "Morning gymnastics", "Walking to work", "End of the day" 
+        			],
+        			"number": 4,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Walking"
+      		       },
+		       {
+        			"original_categories": [
+        				"Waking up"
+        			],
+        			"number": 5,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Scratching"
+      		       },
+		       {
+        			"original_categories": [
+        				"Waking up"
+        			],
+        			"number": 6,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Drinking from a glass"
+      		       },
+      			{
+        			"original_categories": [
+        				"Waking up", "End of the day" 
+        			],
+        			"number": 7,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Cutting food with knife"
+      			},
+      			{
+        			"original_categories": [
+        				"Waking up"
+        			],
+        			"number": 8,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Brushing teeth"
+      		       },
+      			{
+        			"original_categories": [
+        				"Waking up", "Seizure", "Morning gymnastics", "Walking to work", "End of the day"
+        			],
+        			"number": 9,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Rest"
+      			},
+		      {
+        			"original_categories": [
+        				"Morning gymnastics"
+        			],
+        			"number": 10,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Push-ups"
+      		       },
+      			{
+        			"original_categories": [
+        				"Walking to work"
+        			],
+        			"number": 11,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Shaking hands"
+      			},
+			{
+        			"original_categories": [
+        				"Walking to work"
+        			],
+        			"number": 12,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Using mouse"
+      			},
+			{
+        			"original_categories": [
+        				"Walking to work"
+        			],
+        			"number": 13,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Typing on a keyboard"
+      			},
+			{
+        			"original_categories": [
+        				"End of the day"
+        			],
+        			"number": 14,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Putting away groceries"
+      		       },
+		       {
+        			"original_categories": [
+        				"End of the day"
+        			],
+        			"number": 15,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Folding towels"
+      		       },
+		       {
+        			"original_categories": [
+        				"End of the day"
+        			],
+        			"number": 16,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Vacuum cleaning"
+      		       },
+		       {
+        			"original_categories": [
+        				"End of the day"
+        			],
+        			"number": 17,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Doing the dishes"
+      		       },
+		       {
+        			"original_categories": [
+        				"End of the day"
+        			],
+        			"number": 18,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Watching television"
+      		       },
+
+
+			{
+        			"original_categories": [
+        				"Seizure"
+        			],
+        			"number": 19,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Myoclonic"
+      			},
+			{
+        			"original_categories": [
+        				"Seizure"
+        			],
+        			"number": 20,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Tonic-Clonic"
+      			},
+			{
+        			"original_categories": [
+        				"Seizure"
+        			],
+        			"number": 21,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Clonic"
+      			},
+			{
+        			"original_categories": [
+        				"Waking up"
+        			],
+        			"number": 22,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "22"
+      			},
+			{
+        			"original_categories": [
+        				"Waking up"
+        			],
+        			"number": 23,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "23"
+      			},
+			{
+        			"original_categories": [
+        				"Morning gymnastics"
+        			],
+        			"number": 24,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "24"
+      			},
+			{
+        			"original_categories": [
+        				"Morning gymnastics"
+        			],
+        			"number": 25,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "25"
+      			},
+			{
+        			"original_categories": [
+        				"Walking to work"
+        			],
+        			"number": 26,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "26"
+      			},
+			{
+        			"original_categories": [
+        				"Walking to work"
+        			],
+        			"number": 27,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "27"
+      			},
+			{
+        			"original_categories": [
+        				"End of the day"
+        			],
+        			"number": 28,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "28"
+      			},
+			{
+        			"original_categories": [
+        				"End of the day"
+        			],
+        			"number": 29,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "29"
+      			}
+
+																								
+    		]
+  		}  
+	    	]
+	    
+	},
+	"CRNT": {
+		"tasks": [
+			{
+				"type": "DirectInputReader",
+				"id": "ShimmerECG1Input"
+			},
+			{
+				"type": "DirectInputReader",
+				"id": "ShimmerECG2Input"
+			},
+			{
+				"type": "DirectInputReader",
+				"id": "ShimmerECG3Input"
+			},
+			{
+				"type": "DirectInputReader",
+				"id": "ShimmerIMU1Input"
+			},
+			{
+				"type": "DirectInputReader",
+				"id": "ACTLogInput"
+			},
+			{
+				"type": "LoggerTask",
+				"id": "ECG1Output",
+				"encoder": {"type": "TimestampedLinesEncoder"},
+    			"name": "sdcard/ECG1Data"
+			
+			},
+			{
+				"type": "LoggerTask",
+				"id": "ECG2Output",
+				"encoder": {"type": "TimestampedLinesEncoder"},
+    			"name": "sdcard/ECG2Data"
+			
+			},
+			{
+				"type": "LoggerTask",
+				"id": "ECG3Output",
+				"encoder": {"type": "TimestampedLinesEncoder"},
+    			"name": "sdcard/ECG3Data"
+			
+			},
+			{
+				"type": "LoggerTask",
+				"id": "IMU1Output",
+				"encoder": {"type": "TimestampedLinesEncoder"},
+    			"name": "sdcard/IMU1Data"
+			
+			},
+			
+   			{
+				"type": "SimpleMerger",
+				"id": "ECG1Merger",
+				"inports": 2
+			},
+			{
+				"type": "SimpleMerger",
+				"id": "ECG2Merger",
+				"inports": 2
+			},
+			{
+				"type": "SimpleMerger",
+				"id": "IMU1Merger",
+				"inports": 2
+			},
+			{
+				"type": "SimpleMerger",
+				"id": "ECG3Merger",
+				"inports": 2
+			}
+   			
+		],
+		
+		"connections": [
+			{
+				"type": "Connection",
+				"sourceTask": "ShimmerECG1Input",
+				"sourcePort": 0,
+				"destTask": "ECG1Merger",
+				"destPort": 0
+			},
+			{
+				"type": "Connection",
+				"sourceTask": "ShimmerECG2Input",
+				"sourcePort": 0,
+				"destTask": "ECG2Merger",
+				"destPort": 0
+			},
+			{
+				"type": "Connection",
+				"sourceTask": "ShimmerECG3Input",
+				"sourcePort": 0,
+				"destTask": "ECG3Merger",
+				"destPort": 0
+			},
+			{
+				"type": "Connection",
+				"sourceTask": "ShimmerIMU1Input",
+				"sourcePort": 0,
+				"destTask": "IMU1Merger",
+				"destPort": 0
+			},
+			{
+				"type": "Connection",
+				"sourceTask": "ACTLogInput",
+				"sourcePort": 0,
+				"destTask": "ECG1Merger",
+				"destPort": 1
+			},
+			{
+				"type": "Connection",
+				"sourceTask": "ACTLogInput",
+				"sourcePort": 0,
+				"destTask": "ECG2Merger",
+				"destPort": 1
+			},
+			{
+				"type": "Connection",
+				"sourceTask": "ACTLogInput",
+				"sourcePort": 0,
+				"destTask": "IMU1Merger",
+				"destPort": 1
+			},
+			{
+				"type": "Connection",
+				"sourceTask": "ACTLogInput",
+				"sourcePort": 0,
+				"destTask": "ECG3Merger",
+				"destPort": 1
+			},
+			{
+				"type": "Connection",
+				"sourceTask": "ECG1Merger",
+				"sourcePort": 0,
+				"destTask": "ECG1Output",
+				"destPort": 0
+			},
+			{
+				"type": "Connection",
+				"sourceTask": "ECG2Merger",
+				"sourcePort": 0,
+				"destTask": "ECG2Output",
+				"destPort": 0
+			},
+			{
+				"type": "Connection",
+				"sourceTask": "ECG3Merger",
+				"sourcePort": 0,
+				"destTask": "ECG3Output",
+				"destPort": 0
+			},
+			{
+				"type": "Connection",
+				"sourceTask": "IMU1Merger",
+				"sourcePort": 0,
+				"destTask": "IMU1Output",
+				"destPort": 0
+			}
+		]
+	}
+  
+
+}

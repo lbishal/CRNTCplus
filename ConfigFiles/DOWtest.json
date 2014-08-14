@@ -1,0 +1,35 @@
+{
+ "CRNT": {
+  "tasks": [
+   {
+    "type": "DirectInputReader",
+    "id": "ETHInput"
+   },
+   {
+    "type": "DirectOutputWriter",
+    "id": "ETHOSOutput"
+   }
+  ],
+  "connections": [
+   {
+    "type": "Connection",
+    "sourceTask": "ETHInput",
+    "destTask": "ETHOSOutput"
+   }
+  ]
+ },
+ "CRNT+": {"modules": [
+  {
+   "id": "ETHInput",
+   "networkNr": 0,
+   "transmissionType": 2,
+   "deviceType": 0,
+   "rfFrequency": 74,
+   "proximityTreshold": 7,
+   "type": "ETHOS",
+   "channelPeriod": 256,
+   "deviceNr": 0,
+   "channelNr": 0
+  }
+ ]}
+}

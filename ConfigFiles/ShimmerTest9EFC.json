@@ -1,0 +1,43 @@
+{
+	"CRNT": {
+		"tasks": [
+		{
+			"type": "DirectInputReader",
+			"id": "ShimmerInput"
+		},
+		{
+			"type": "LoggerTask",
+			"id": "output",
+			"encoder": {"type": "TimestampedLinesEncoder"},
+    		"name": "sdcard/Shimmer9EFCOutput"
+			
+		}
+		],
+		"connections": [
+		{
+			"type": "Connection",
+			"sourceTask": "ShimmerInput",
+			"destTask": "output"
+		}
+		]
+	},
+	"CRNT+": {
+		"modules": [
+		{
+			"id": "ShimmerInput",
+			"type": "Shimmer",
+			"address": "00:06:66:46:9E:FC",
+			"accelerometer": true,
+			"gyroscope": false,
+			"magnetometer": false,
+			"ecg": true,
+			"egm": false,
+			"heart": false,
+			"gsr": false,
+			"strain": false,
+			"samplingrate": 250
+   
+		}
+		]
+	}
+}

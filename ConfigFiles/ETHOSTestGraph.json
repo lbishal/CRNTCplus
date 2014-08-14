@@ -1,0 +1,269 @@
+{
+	"CRNT": {
+		"tasks": [
+   			{
+    			"type": "DirectInputReader",
+    			"id": "ETHInput"
+   			},
+   			{
+    			"type": "DirectInputReader",
+    			"id": "ACTLogInput"
+   			},
+   			{
+    			"type": "DirectOutputWriter",
+    			"id": "accGraphOutput"
+   			},
+   			{
+    			"type": "DirectOutputWriter",
+    			"id": "oriGraphOutput"
+   			},
+   			{
+    			"type": "DirectOutputWriter",
+    			"id": "magGraphOutput"
+   			},
+   			{
+				"type": "SimpleMerger",
+				"id": "merger",
+				"inports": 2
+			},
+			{
+				"type": "SelectiveSplitterTask",
+				"id": "splitter",
+				"chSelection": [[0,1,2,3,4,5,6,7,8,9],[0,1,2],[3,4,5],[6,7,8]]
+   			},
+   			{
+    			"type": "LoggerTask",
+    			"id": "LogOutput",
+    			"encoder": {"type": "TimestampedLinesEncoder"},
+    			"name": "sdcard/ETHOS1File"
+   			}
+  		],
+  		"connections": [
+   			{
+    			"type": "Connection",
+    			"sourceTask": "ETHInput",
+    			"sourcePort": 0,
+    			"destTask": "merger",
+    			"destPort": 0
+   			},
+   			{
+    			"type": "Connection",
+    			"sourceTask": "ACTLogInput",
+    			"sourcePort": 0,
+    			"destTask": "merger",
+    			"destPort": 1
+   			},
+   			{
+    			"type": "Connection",
+    			"sourceTask": "merger",
+    			"sourcePort": 0,
+    			"destTask": "splitter",
+    			"destPort": 0
+   			},
+   			{
+    			"type": "Connection",
+    			"sourceTask": "splitter",
+    			"sourcePort": 0,
+    			"destTask": "LogOutput",
+    			"destPort": 0
+   			},
+   			{
+    			"type": "Connection",
+    			"sourceTask": "splitter",
+    			"sourcePort": 1,
+    			"destTask": "oriGraphOutput",
+    			"destPort": 0
+   			},
+   			{
+    			"type": "Connection",
+    			"sourceTask": "splitter",
+    			"sourcePort": 2,
+    			"destTask": "accGraphOutput",
+    			"destPort": 0
+   			},
+   			{
+    			"type": "Connection",
+    			"sourceTask": "splitter",
+    			"sourcePort": 3,
+    			"destTask": "magGraphOutput",
+    			"destPort": 0
+   			}
+  		]
+ 	},
+ 	"CRNT+": {
+ 		"modules": [
+  			{
+   				"id": "ETHInput",
+   				"transmissionType": 2,
+   				"proximityTreshold": 7,
+   				"type": "ETHOS",
+   				"deviceNr": 0,
+   				"channelNr": 0
+  			},
+  			{
+				"type": "AndroidPlot",
+				"nChannels": 3,
+				"id": "oriGraphOutput",
+				"tabName": "Orientation"
+			},
+			{
+				"type": "AndroidPlot",
+				"nChannels": 3,
+				"id": "accGraphOutput",
+				"tabName": "Accleration"
+			},
+			{
+				"type": "AndroidPlot",
+				"nChannels": 3,
+				"id": "magGraphOutput",
+				"tabName": "Magnetism"
+			},
+  			{
+      			"type": "ACTLogAnnotation",
+  				"id": "ACTLogInput",
+    			"last_info": {
+      				"last_activity": "",
+      				"last_category": ""
+    			},
+    			"preferences": {
+      				"feedback_message": true,
+      				"reminder": false,
+      				"reminder_time": 60,
+      				"add_activities": false,
+      				"feedback_message_duration": 1,
+      				"reminder_type_sound": true,
+     				"reminder_type_vibrate": true,
+      				"delete_activities": true,
+      				"reminder_type_light": true
+    			},
+    			"activities": [
+      			{
+        			"original_categories": [
+        				"General", "Seizure"
+        			],
+        			"number": 0,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Nothing"
+      			},
+      			{
+        			"original_categories": [
+        				"General"
+        			],
+        			"number": 1,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Brushing teeth"
+      			},
+      			{
+        			"original_categories": [
+        				"General"
+        			],
+        			"number": 2,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Walking"
+      			},
+      			{
+        			"original_categories": [
+        				"General"
+        			],
+        			"number": 3,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Running"
+      			},
+      			{
+        			"original_categories": [
+        				"General"
+        			],
+        			"number": 4,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Shaking hands"
+      			},
+				{
+        			"original_categories": [
+        				"General"
+        			],
+        			"number": 5,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Cutting food"
+      			},
+				{
+        			"original_categories": [
+        				"General"
+        			],
+        			"number": 6,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Drinking"
+      			},
+				{
+        			"original_categories": [
+        				"General"
+        			],
+        			"number": 7,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Using mouse"
+      			},
+				{
+        			"original_categories": [
+        				"General"
+        			],
+        			"number": 8,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Typing"
+      			},
+				{
+        			"original_categories": [
+        				"General"
+        			],
+        			"number": 9,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Writing"
+      			},
+				{
+        			"original_categories": [
+        				"General"
+        			],
+        			"number": 10,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Scratching"
+      			},
+				{
+        			"original_categories": [
+        				"Seizure"
+        			],
+        			"number": 11,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Myoclonic"
+      			},
+				{
+        			"original_categories": [
+        				"Seizure"
+        			],
+        			"number": 12,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Tonic-Clonic"
+      			},
+				{
+        			"original_categories": [
+        				"Seizure"
+        			],
+        			"number": 13,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Clonic"
+      			}																							
+    		]
+  		}  
+ ]}
+}

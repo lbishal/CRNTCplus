@@ -1,0 +1,57 @@
+{
+ "CRNT": {
+  "tasks": [
+   {
+    "type": "DirectInputReader",
+    "id": "ETHInput"
+   },
+   {
+	"type": "SelectiveSplitterTask",
+	"id": "splitter",
+	"chSelection": [[0,1,2]]
+   },
+   {
+    "type": "TCPWriter",
+    "id": "gyroOutput",
+    "encoder": {"type": "TimestampedLinesEncoder"},
+    "port": 7771
+   }
+  ],
+  "connections": [
+   {
+    "type": "Connection",
+    "sourceTask": "ETHInput",
+	"sourcePort": 0,
+    "destTask": "splitter",
+	"destPort": 0
+   },
+   {
+    "type": "Connection",
+	"sourceTask": "splitter",
+	"sourcePort": 0,
+	"destTask": "gyroOutput",
+	"destPort": 0
+   }
+  ]
+ },
+ "CRNT+": {"modules": [
+  {
+   "id": "ETHInput",
+   "networkNr": 0,
+   "transmissionType": 2,
+   "deviceType": 0,
+   "rfFrequency": 74,
+   "proximityTreshold": 7,
+   "type": "ETHOS",
+   "channelPeriod": 256,
+   "deviceNr": 0,
+   "channelNr": 0
+  },
+  {
+   "type": "SimpleGraphTCP",
+   "id": "gyroGraph",
+   "port": 7771,
+   "host": "localhost"
+  }
+ ]}
+}

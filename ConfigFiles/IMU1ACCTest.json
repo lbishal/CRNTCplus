@@ -1,0 +1,68 @@
+{	
+	"CRNT+": {
+		"modules": [
+		    
+		   {
+		    	"id": "IMU1Input",
+				"type": "Shimmer",
+				"address": "00:06:66:46:B5:EA",
+				"accelerometer": true,
+				"gyroscope": false,
+				"magnetometer": false,
+				"ecg": false,
+				"egm": false,
+				"heart": false,
+				"gsr": false,
+				"strain": false,
+				"samplingrate": 100,
+				"accRange": 0,
+				"gsrRange": 0,
+				"calibrated": true
+		    },
+			{
+				"type": "AndroidPlot",
+				"nChannels": 3,
+				"id": "IMU1ACCGraph",
+				"tabName": "ACC"
+			}
+	    	]
+	    
+	},
+	"CRNT": {
+		"tasks": [
+			{
+				"type": "DirectInputReader",
+				"id": "IMU1Input"
+			},
+			{
+ 	        	"type": "DirectOutputWriter",
+    			"id": "IMU1ACCGraph"
+            },
+            {
+				"type": "SelectiveSplitterTask",
+				"id": "splitter",
+				"chSelection": [[0,1,2]]
+   			}
+		],
+		
+		"connections": [
+			{
+				"type": "Connection",
+				"sourceTask": "IMU1Input",
+				"sourcePort": 0,
+				"destTask": "splitter",
+				"destPort": 0
+			},
+			{
+				"type": "Connection",
+				"sourceTask": "splitter",
+				"sourcePort": 0,
+				"destTask": "IMU1ACCGraph",
+				"destPort": 0
+			}
+			
+		]
+	}
+  
+
+}

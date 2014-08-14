@@ -1,0 +1,37 @@
+{
+ "CRNT": {
+  "tasks": [
+   {
+    "type": "DirectInputReader",
+    "id": "ETHInput"
+   },
+   {
+    "type": "LoggerTask",
+    "id": "ETHOutput",
+    "encoder": {"type": "TimestampedLinesEncoder"},
+    "name": "sdcard/ETHOSTest3"
+   }
+  ],
+  "connections": [
+   {
+    "type": "Connection",
+    "sourceTask": "ETHInput",
+    "destTask": "ETHOutput"
+   }
+  ]
+ },
+ "CRNT+": {"modules": [
+  {
+   "id": "ETHInput",
+   "networkNr": 0,
+   "transmissionType": 2,
+   "deviceType": 0,
+   "rfFrequency": 2474,
+   "proximityTreshold": 7,
+   "type": "ETHOS",
+   "channelPeriod": 128,
+   "deviceNr": 0,
+   "channelNr": 0
+  }
+ ]}
+}

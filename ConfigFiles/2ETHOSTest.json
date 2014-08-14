@@ -1,0 +1,58 @@
+{
+	"CRNT": {
+		"tasks": [
+   		{
+    		"type": "DirectInputReader",
+    		"id": "ETH7Input"
+   		},
+    	{
+    		"type": "DirectInputReader",
+    		"id": "ETH8Input"
+   		},
+   		{
+    		"type": "LoggerTask",
+    		"id": "ETH7Output",
+    		"encoder": {"type": "TimestampedLinesEncoder"},
+    		"name": "sdcard/ETHOS1File"
+   		},
+   		{
+    		"type": "LoggerTask",
+    		"id": "ETH8Output",
+    		"encoder": {"type": "TimestampedLinesEncoder"},
+    		"name": "sdcard/ETHOS2File"
+   		}
+  		],
+  		"connections": [
+   		{
+    		"type": "Connection",
+    		"sourceTask": "ETH7Input",
+    		"destTask": "ETH7Output1"
+   		},
+   		{
+    		"type": "Connection",
+    		"sourceTask": "ETH8Input",
+    		"destTask": "ETH8Output"
+   		}
+  		]
+ 	},
+ 	"CRNT+": {
+ 		"modules": [
+  		{
+   			"id": "ETH8Input",
+   			"transmissionType": 2,
+   			"proximityTreshold": 7,
+   			"type": "ETHOS",
+   			"deviceNr": 74,
+   			"channelNr": 0
+  		},
+  		{
+  			"id": "ETH7Input",
+  			"transmissionType": 2,
+  			"proximityTreshold": 7,
+  			"type": "ETHOS",
+  			"deviceNr": 73,
+  			"channelNr": 1
+  		}
+ 		]
+ 	}
+}

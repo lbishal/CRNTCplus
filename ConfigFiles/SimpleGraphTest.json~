@@ -1,0 +1,56 @@
+{	
+	"CRNT+": {
+		"modules": [
+		    
+		    	{
+		    	"type": "SmartphoneAccelerometer",
+		    	"id": "AccInput",
+		    	"nChannels": 3,
+		    	"readingRate": "FASTEST"    
+		    	
+		    },
+			{
+				"type": "SimpleGraph",
+				"nChannels": 3,
+				"id": "output",
+				"TabName": "OutputAccelerometer"
+			}
+	    	]
+	    
+	},
+	"CRNT": {
+		"tasks": [
+			{
+				"type": "DirectInputReader",
+				"id": "AccInput"
+			},
+			{
+				"type":"FilterTask",
+				"id":"Filter1",
+				"filterPlugin":{
+					"type":"MeanFilter2"	
+						}
+			},
+			{
+ 	        	"type": "DirectOutputWriter",
+    			"id": "output"
+            }
+		],
+		
+		"connections": [
+			{
+				"type": "Connection",
+				"sourceTask": "AccInput",
+				"destTask": "Filter1"
+			},
+			{
+				"type":"Connection",
+				"sourceTask":"Filter1",
+				"destTask":"output"
+			}
+			
+		]
+	}
+  
+
+}

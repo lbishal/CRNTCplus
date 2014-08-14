@@ -1,0 +1,183 @@
+{	
+	"CRNT+": {
+		"modules": [
+		    
+		    {
+		    	"type": "RandomGenerator",
+		    	"id": "rand1Input",
+		    	"frequency": 16,
+			"offset": 0
+		    },
+		    {
+		    	"type": "RandomGenerator",
+		    	"id": "rand2Input",
+		    	"frequency": 16,
+			"offset": 1
+		    },
+		    {
+		    	"type": "RandomGenerator",
+		    	"id": "rand3Input",
+		    	"frequency": 16,
+			"offset": 2
+		    },
+		    {
+      			"type": "ACTLogAnnotation",
+  				"id": "ActInput",
+    			"last_info": {
+      				"last_activity": "Tonic-Clonic",
+      				"last_category": "Seizure"
+    			},
+    			"preferences": {
+      				"feedback_message": true,
+      				"reminder": false,
+      				"reminder_time": 60,
+      				"add_activities": true,
+      				"feedback_message_duration": 1,
+      				"reminder_type_sound": true,
+     				"reminder_type_vibrate": true,
+      				"delete_activities": true,
+      				"reminder_type_light": true
+    			},
+    			"activities": [
+      			{
+        			"original_categories": [
+        				"Seizure"
+        			],
+        			"number": 2,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Clonic"
+      			},
+      			{
+        			"original_categories": [
+        				"General"
+        			],
+        			"number": 0,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Nothing"
+      			},
+      			{
+        			"original_categories": [
+        				"Seizure"
+        			],
+        			"number": 3,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Tonic-Clonic"
+      			},
+      			{
+        			"original_categories": [
+        				"General"
+        			],
+        			"number": 5,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Mistake"
+      			},
+      			{
+        			"original_categories": [
+        				"Seizure"
+        			],
+        			"number": 1,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Myoclonic"
+      			},
+{
+        			"original_categories": [
+        				"Seizure"
+        			],
+        			"number": 6,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Seizure start"
+      			}					
+    		]
+  		}  
+	]
+	    
+	},
+	"CRNT": {
+		"tasks": [
+			{
+				"type": "DirectInputReader",
+				"id": "rand1Input"
+			},
+			{
+				"type": "DirectInputReader",
+				"id": "rand2Input"
+			},
+			{
+				"type": "DirectInputReader",
+				"id": "rand3Input"
+			},
+			{
+				"type": "DirectInputReader",
+				"id": "ActInput"
+			},
+			{
+				"type": "SimpleMerger",
+				"id": "merger",
+				"inPortLossless": true,
+				"inports": 3
+			},
+			{
+ 	        		"type": "LoggerTask",
+    				"id": "ActOutput",
+            			"encoder": {
+              				"type": "TimestampedLinesEncoder"
+            			},
+            			"name": "sdcard/ACTfile.log"
+            		},
+			{
+ 	        		"type": "LoggerTask",
+    				"id": "output",
+				"inPortBufferSize": 9999,
+				"inPortLossless": true,
+            			"encoder": {
+              				"type": "TimestampedLinesEncoder"
+            			},
+            			"name": "sdcard/outputfile"
+            		}
+			],
+		
+		"connections": [
+			{
+				"type": "Connection",
+				"sourceTask": "rand1Input",
+				"sourcePort": 0,
+				"destTask": "merger",
+				"destPort": 0
+			},
+			{
+				"type": "Connection",
+				"sourceTask": "rand2Input",
+				"sourcePort": 0,
+				"destTask": "merger",
+				"destPort": 1
+			},
+			{
+				"type": "Connection",
+				"sourceTask": "rand3Input",
+				"sourcePort": 0,
+				"destTask": "merger",
+				"destPort": 2
+			},
+			{
+				"type": "Connection",
+				"sourceTask": "merger",
+				"sourcePort": 0,
+				"destTask": "output",
+				"destPort": 0
+			},
+			{
+				"type": "Connection",
+				"sourceTask": "ActInput",
+				"destTask": "ActOutput"
+			}
+		]
+	}
+  
+
+}

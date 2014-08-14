@@ -1,0 +1,270 @@
+{	
+	"CRNT+": {
+		"modules": [
+		    
+		    {
+		    	"id": "ShimmerIMU1Input",
+				"type": "Shimmer",
+				"address": "00:06:66:46:9E:FC",
+				"accelerometer": true,
+				"gyroscope": false,
+				"magnetometer": false,
+				"ecg": false,
+				"egm": false,
+				"heart": false,
+				"gsr": false,
+				"strain": false,
+				"samplingrate": 100,
+				"calibrated": true,
+				"accRange": 0,
+				"gsrRange": 0
+		    },
+		    {
+				"type": "AndroidPlot",
+				"nChannels": 3,
+				"id": "KNNGraph",
+				"tabName": "Knn"
+				
+			}
+			
+  		  
+	    ]
+	    
+	},
+	"CRNT": {
+		"tasks": [
+		{
+			"type": "DirectInputReader",
+			"id": "ShimmerIMU1Input"
+		},
+		{
+			"type": "SelectiveSplitterTask",
+			"id": "IMU1Splitter",
+			"chSelection": [[0],[1],[2]]
+		},
+		{
+			"type": "FilterTask",
+			"id": "IMU1varFilterX",
+			"filterPlugin": {
+				"type": "VarFilter",
+				"windowSize": 100
+			}
+		},
+		{
+			"type": "FilterTask",
+			"id": "IMU1varFilterY",
+			"filterPlugin": {
+				"type": "VarFilter",
+				"windowSize": 100
+			}
+		},
+		{
+			"type": "FilterTask",
+			"id": "IMU1varFilterZ",
+			"filterPlugin": {
+				"type": "VarFilter",
+				"windowSize": 100
+			}
+		},
+		{
+			"type": "FilterTask",
+			"id": "KNNMeanFilter",
+			"filterPlugin": {
+				"type": "MeanFilter",
+				"windowSize": 100
+			}
+		},
+		{
+			"type": "FilterTask",
+			"id": "KNNThresholdFilter",
+			"filterPlugin": {
+				"type": "ThresholdFilter",
+				"high": {"type": "FloatValue", "val": 1.51},
+				"low": {"type": "FloatValue", "val": 1.49},
+				"out0": 0,
+				"out1": 2,
+				"out2": 1 
+			}
+		},
+		{
+			"type": "KNN",
+			"id": "knn",
+			"k": 3,
+   			"configFile": "sdcard/trainingdata_imu1_var.json"
+		},
+		
+		{
+			"type": "SimpleMerger",
+			"id": "merger",
+			"inports": 3
+		},
+		{
+			"type": "SimpleMerger",
+			"id": "rawMerger",
+			"inports": 3
+		},
+		{
+			"type": "LoggerTask",
+			"id": "rawResults",
+			"name": "sdcard/RawResults.log",  
+			"encoder": {
+                                  "type": "TimestampedLinesEncoder"
+                        }
+                          	
+		},
+		{
+			"type": "LoggerTask",
+			"id": "KNNTHResults",
+			"name": "sdcard/KNNTHResults.log",  
+			"encoder": {
+                                  "type": "TimestampedLinesEncoder"
+                        }
+                          	
+		},
+		{
+			"type": "LoggerTask",
+			"id": "KNNResults",
+			"name": "sdcard/KNNResults.log",  
+			"encoder": {
+                                  "type": "TimestampedLinesEncoder"
+                        }
+                          	
+		},
+		{
+			"type": "DirectOutputWriter",
+			"id": "KNNGraph"
+		}
+	],
+
+	"connections": [
+		{
+			"type": "Connection",
+			"sourceTask": "ShimmerIMU1Input",
+			"sourcePort": 0,
+			"destTask": "IMU1Splitter",
+			"destPort": 0
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "IMU1Splitter",
+			"sourcePort": 0,
+			"destTask": "IMU1varFilterX",
+			"destPort": 0
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "IMU1Splitter",
+			"sourcePort": 0,
+			"destTask": "rawMerger",
+			"destPort": 0
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "IMU1Splitter",
+			"sourcePort": 1,
+			"destTask": "IMU1varFilterY",
+			"destPort": 0
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "IMU1Splitter",
+			"sourcePort": 1,
+			"destTask": "rawMerger",
+			"destPort": 1
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "IMU1Splitter",
+			"sourcePort": 2,
+			"destTask": "IMU1varFilterZ",
+			"destPort": 0
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "IMU1Splitter",
+			"sourcePort": 2,
+			"destTask": "rawMerger",
+			"destPort": 2
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "IMU1varFilterX",
+			"sourcePort": 0,
+			"destTask": "merger",
+			"destPort": 0
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "IMU1varFilterY",
+			"sourcePort": 0,
+			"destTask": "merger",
+			"destPort": 1
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "IMU1varFilterZ",
+			"sourcePort": 0,
+			"destTask": "merger",
+			"destPort": 2
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "merger",
+			"sourcePort": 0,
+			"destTask": "knn",
+			"destPort": 0
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "knn",
+			"sourcePort": 0,
+			"destTask": "KNNMeanFilter",
+			"destPort": 0
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "knn",
+			"sourcePort": 0,
+			"destTask": "KNNResults",
+			"destPort": 0
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "KNNMeanFilter",
+			"sourcePort": 0,
+			"destTask": "KNNThresholdFilter",
+			"destPort": 0
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "KNNThresholdFilter",
+			"sourcePort": 0,
+			"destTask": "KNNGraph",
+			"destPort": 0
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "KNNThresholdFilter",
+			"sourcePort": 0,
+			"destTask": "KNNTHResults",
+			"destPort": 0
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "merger",
+			"sourcePort": 0,
+			"destTask": "rawResults",
+			"destPort": 0
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "rawMerger",
+			"sourcePort": 0,
+			"destTask": "KNNGraph",
+			"destPort": 0
+		}
+	]
+	}
+  
+
+}

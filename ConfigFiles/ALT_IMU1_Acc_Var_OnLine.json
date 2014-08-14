@@ -1,0 +1,106 @@
+{	
+	"CRNT+": {
+		"modules": [
+		    
+		    {
+		    	"id": "ShimmerIMU1Input",
+				"type": "Shimmer",
+				"address": "00:06:66:46:B5:EA",
+				"accelerometer": true,
+				"gyroscope": false,
+				"magnetometer": false,
+				"ecg": false,
+				"egm": false,
+				"heart": false,
+				"gsr": false,
+				"strain": false,
+				"samplingrate": 100,
+				"calibrated": true,
+				"accRange": 0,
+				"gsrRange": 0
+		    },
+		    {
+				"type": "AndroidPlot",
+				"nChannels": 1,
+				"id": "KNNGraph",
+				"tabName": "Knn"
+				
+			}
+			
+  		  
+	    ]
+	    
+	},
+	"CRNT": {
+		"tasks": [
+		{
+			"type": "DirectInputReader",
+			"id": "ShimmerIMU1Input"
+		},
+		{
+			"type": "SelectiveSplitterTask",
+			"id": "IMU1Splitter",
+			"chSelection": [[0,1,2]]
+		},
+		{
+			"type": "FilterTask",
+			"id": "IMU1varFilter",
+			"filterPlugin": {
+				"type": "VarFilter",
+				"windowSize": 100
+			}
+		},
+		{
+			"type": "KNN",
+			"id": "knn",
+			"k": 3,
+   			"configFile": "sdcard/trainingdata_phone_imu1_var.json"
+		},
+		{
+			"type": "DirectOutputWriter",
+			"id": "KNNGraph"
+		},
+		{
+			"type": "LoggerTask",
+			"id": "KNNResults",
+			"name": "sdcard/KNNResults.log",  
+			"encoder": {
+                                  "type": "TimestampedLinesEncoder"
+                        }  	
+		}
+	],
+
+	"connections": [
+		{
+			"type": "Connection",
+			"sourceTask": "ShimmerIMU1Input",
+			"sourcePort": 0,
+			"destTask": "IMU1Splitter",
+			"destPort": 0
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "IMU1Splitter",
+			"sourcePort": 0,
+			"destTask": "IMU1varFilter",
+			"destPort": 0
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "IMU1varFilter",
+			"sourcePort": 0,
+			"destTask": "knn",
+			"destPort": 0
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "knn",
+			"sourcePort": 0,
+			"destTask": "KNNResults",
+			"destPort": 0
+		},
+	]
+	}
+  
+
+}

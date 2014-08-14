@@ -1,0 +1,178 @@
+{	
+	"CRNT+": {
+		"modules": [
+		    
+		    {
+		    	"type": "SmartphoneAccelerometer",
+		    	"id": "AccInput",
+		    	"nChannels": 3,
+		    	"readingRate": "NORMAL"    
+		    },
+			{
+		    	"type": "SmartphoneMagnet",
+		    	"id": "MagInput",
+		    	"nChannels": 3,
+		    	"readingRate": "NORMAL"    
+		    },
+			{
+		    	"type": "SmartphoneOrientation",
+		    	"id": "OriInput",
+		    	"nChannels": 3,
+		    	"readingRate": "NORMAL"    
+		    },
+		    {
+      			"type": "ACTLogAnnotation",
+  				"id": "ActInput",
+    			"last_info": {
+      				"last_activity": "Tonic-Clonic",
+      				"last_category": "Seizure"
+    			},
+    			"preferences": {
+      				"feedback_message": true,
+      				"reminder": false,
+      				"reminder_time": 60,
+      				"add_activities": true,
+      				"feedback_message_duration": 1,
+      				"reminder_type_sound": true,
+     				"reminder_type_vibrate": true,
+      				"delete_activities": true,
+      				"reminder_type_light": true
+    			},
+    			"activities": [
+      			{
+        			"original_categories": [
+        				"Seizure"
+        			],
+        			"number": 2,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Clonic"
+      			},
+      			{
+        			"original_categories": [
+        				"General"
+        			],
+        			"number": 0,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Nothing"
+      			},
+      			{
+        			"original_categories": [
+        				"Seizure"
+        			],
+        			"number": 3,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Tonic-Clonic"
+      			},
+      			{
+        			"original_categories": [
+        				"General"
+        			],
+        			"number": 5,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Mistake"
+      			},
+      			{
+        			"original_categories": [
+        				"Seizure"
+        			],
+        			"number": 1,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Myoclonic"
+      			},
+{
+        			"original_categories": [
+        				"Seizure"
+        			],
+        			"number": 6,
+        			"user_activity": false,
+        			"new_categories": [],
+        			"name": "Seizure start"
+      			}					
+    		]
+  		}  
+	]
+	    
+	},
+	"CRNT": {
+		"tasks": [
+			{
+				"type": "DirectInputReader",
+				"id": "AccInput"
+			},
+			{
+				"type": "DirectInputReader",
+				"id": "MagInput"
+			},
+			{
+				"type": "DirectInputReader",
+				"id": "OriInput"
+			},
+			{
+				"type": "DirectInputReader",
+				"id": "ActInput"
+			},
+			{
+ 	        	"type": "LoggerTask",
+    			"id": "ActOutput",
+            	"encoder": {
+              		"type": "TimestampedLinesEncoder"
+            	},
+            	"name": "sdcard/ACTfile.log"
+            },
+			{
+ 	        	"type": "LoggerTask",
+    			"id": "MagOutput",
+            	"encoder": {
+              		"type": "TimestampedLinesEncoder"
+            	},
+            	"name": "sdcard/Magfile.log"
+            },
+			{
+ 	        	"type": "LoggerTask",
+    			"id": "OriOutput",
+            	"encoder": {
+              		"type": "TimestampedLinesEncoder"
+            	},
+            	"name": "sdcard/OriFile.log"
+            },
+			{
+ 	        	"type": "LoggerTask",
+    			"id": "AccOutput",
+            	"encoder": {
+              		"type": "TimestampedLinesEncoder"
+            	},
+            	"name": "sdcard/Accfile.log"
+            }
+		],
+		
+		"connections": [
+			{
+				"type": "Connection",
+				"sourceTask": "AccInput",
+				"destTask": "AccOutput"
+			},
+			{
+				"type": "Connection",
+				"sourceTask": "MagInput",
+				"destTask": "MagOutput"
+			},
+			{
+				"type": "Connection",
+				"sourceTask": "OriInput",
+				"destTask": "OriOutput"
+			},
+			{
+				"type": "Connection",
+				"sourceTask": "ActInput",
+				"destTask": "ActOutput"
+			}
+		]
+	}
+  
+
+}

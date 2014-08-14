@@ -1,0 +1,100 @@
+{	
+	"CRNT+": {
+		"modules": [
+		    
+		    {
+				"id": "IMU1Input",
+				"type": "Shimmer",
+				"address": "00:06:66:46:B5:EA",
+				"accelerometer": true,
+				"gyroscope": true,
+				"magnetometer": true,
+				"ecg": false,
+				"egm": false,
+				"heart": false,
+				"gsr": false,
+				"strain": false,
+				"samplingrate": 250
+   
+			},
+			{
+				"type": "AndroidPlot",
+				"nChannels": 3,
+				"id": "IMU1ORIGraph",
+				"tabName": "ECG"
+			},
+			{
+				"type": "AndroidPlot",
+				"nChannels": 3,
+				"id": "IMU1ACCGraph",
+				"tabName": "ACC"
+			},
+			{
+				"type": "AndroidPlot",
+				"nChannels": 3,
+				"id": "IMU1MAGGraph",
+				"tabName": "MAG"
+			}
+	    	]
+	    
+	},
+	"CRNT": {
+		"tasks": [
+			{
+				"type": "DirectInputReader",
+				"id": "IMU1Input"
+			},
+			{
+ 	        	"type": "DirectOutputWriter",
+    			"id": "IMU1ACCGraph"
+            },
+            {
+ 	        	"type": "DirectOutputWriter",
+    			"id": "IMU1ORIGraph"
+            },
+             {
+ 	        	"type": "DirectOutputWriter",
+    			"id": "IMU1MAGGraph"
+            },
+            {
+				"type": "SelectiveSplitterTask",
+				"id": "splitter",
+				"chSelection": [[0,1,2],[0,1,2],[0,1,2]]
+   			}
+		],
+		
+		"connections": [
+			{
+				"type": "Connection",
+				"sourceTask": "IMU1Input",
+				"sourcePort": 0,
+				"destTask": "splitter",
+				"destPort": 0
+			},
+			{
+				"type": "Connection",
+				"sourceTask": "splitter",
+				"sourcePort": 0,
+				"destTask": "IMU1ACCGraph",
+				"destPort": 0
+			},
+			{
+				"type": "Connection",
+				"sourceTask": "splitter",
+				"sourcePort": 1,
+				"destTask": "IMU1ORIGraph",
+				"destPort": 0
+			},
+			{
+				"type": "Connection",
+				"sourceTask": "splitter",
+				"sourcePort": 2,
+				"destTask": "IMU1MAGGraph",
+				"destPort": 0
+			}
+			
+		]
+	}
+  
+
+}

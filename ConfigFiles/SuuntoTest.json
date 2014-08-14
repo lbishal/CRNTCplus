@@ -1,0 +1,37 @@
+{
+ "CRNT": {
+  "tasks": [
+   {
+    "type": "DirectInputReader",
+    "id": "SuuntoInput"
+   },
+   {
+    "type": "LoggerTask",
+    "id": "SuuntoOutput",
+    "encoder": {"type": "TimestampedLinesEncoder"},
+    "name": "sdcard/SuuntoFile"
+   }
+  ],
+  "connections": [
+   {
+    "type": "Connection",
+    "sourceTask": "SuuntoInput",
+    "destTask": "SuuntoOutput"
+   }
+  ]
+ },
+ "CRNT+": {"modules": [
+  {
+   "id": "SuuntoInput",
+   "networkNr": 1,
+   "transmissionType": 2,
+   "deviceType": 0,
+   "rfFrequency": 65,
+   "proximityTreshold": 7,
+   "type": "SuuntoBelt",
+   "channelPeriod": 6554,
+   "deviceNr": 14663,
+   "channelNr": 0
+  }
+ ]}
+}

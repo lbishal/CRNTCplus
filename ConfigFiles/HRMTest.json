@@ -1,0 +1,37 @@
+{
+	"CRNT": {
+		"tasks": [
+		{
+			"type": "DirectInputReader",
+			"id": "HRMInput"
+		},
+		{
+			"type": "LoggerTask",
+			"id": "output",
+			"encoder": {"type": "TimestampedLinesEncoder"},
+    		"name": "sdcard/HRMOutput"
+			
+		}
+		],
+		"connections": [
+		{
+			"type": "Connection",
+			"sourceTask": "HRMInput",
+			"destTask": "output"
+		}
+		]
+	},
+	"CRNT+": {
+		"modules": [
+		{
+			"id": "HRMInput",
+			"type": "ANTPlusHRM",
+			"deviceNr": 0,
+			"channelNr": 0,
+			"proximityTreshold": 2,
+			"transmissionType": 0
+   
+		}
+		]
+	}
+}

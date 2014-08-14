@@ -1,0 +1,143 @@
+{	
+	"CRNT+": {
+		"modules": [
+			
+  		  
+	    ]
+	    
+	},
+	"CRNT": {
+		"tasks": [
+		{
+			"type": "FileReader",
+			"id": "IMU1reader",
+			"filename": "sdcard/IMU1Data",
+			"decoder": {
+				"type": "FloatLinesDecoder",
+				"skip": 2,
+				"readTimestamp":false
+			},
+			"delay": 10,
+			"disabled": false,
+			"loop":false,
+			"realtime":false
+		},
+		{
+			"type": "SelectiveSplitterTask",
+			"id": "IMU1Splitter",
+			"chSelection": [[0],[1],[2]]
+		},
+		{
+			"type": "FilterTask",
+			"id": "IMU1varFilterX",
+			"filterPlugin": {
+				"type": "VarFilter",
+				"windowSize": 100
+			}
+		},
+		{
+			"type": "FilterTask",
+			"id": "IMU1varFilterY",
+			"filterPlugin": {
+				"type": "VarFilter",
+				"windowSize": 100
+			}
+		},
+		{
+			"type": "FilterTask",
+			"id": "IMU1varFilterZ",
+			"filterPlugin": {
+				"type": "VarFilter",
+				"windowSize": 100
+			}
+		},
+		{
+			"type": "KNN",
+			"id": "knn",
+			"k": 3,
+   			"configFile": "sdcard/trainingdata_phone_imu1_var.json"
+		},
+		{
+			"type": "SimpleMerger",
+			"id": "merger",
+			"inports": 3
+		},
+		{
+			"type": "LoggerTask",
+			"id": "results",
+			"name": "sdcard/IMU1VarKNNResults.log",  
+			"encoder": {
+                                  "type": "TimestampedLinesEncoder"
+                        }
+                          	
+		}
+	],
+	"connections": [
+		{
+			"type": "Connection",
+			"sourceTask": "IMU1reader",
+			"sourcePort": 0,
+			"destTask": "IMU1Splitter",
+			"destPort": 0
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "IMU1Splitter",
+			"sourcePort": 0,
+			"destTask": "IMU1varFilterX",
+			"destPort": 0
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "IMU1Splitter",
+			"sourcePort": 1,
+			"destTask": "IMU1varFilterY",
+			"destPort": 0
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "IMU1Splitter",
+			"sourcePort": 2,
+			"destTask": "IMU1varFilterZ",
+			"destPort": 0
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "IMU1varFilterX",
+			"sourcePort": 0,
+			"destTask": "merger",
+			"destPort": 0
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "IMU1varFilterY",
+			"sourcePort": 0,
+			"destTask": "merger",
+			"destPort": 1
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "IMU1varFilterZ",
+			"sourcePort": 0,
+			"destTask": "merger",
+			"destPort": 2
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "merger",
+			"sourcePort": 0,
+			"destTask": "knn",
+			"destPort": 0
+		},
+		{
+			"type": "Connection",
+			"sourceTask": "knn",
+			"sourcePort": 0,
+			"destTask": "results",
+			"destPort": 0
+		}
+	]
+	}
+  
+
+}

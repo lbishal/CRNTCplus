@@ -1,0 +1,125 @@
+{
+ "CRNT": {
+  "tasks": [
+   {
+    "type": "DirectInputReader",
+    "id": "BA1Input"
+   },
+   { 
+    "type": "DirectInputReader",
+    "id": "BA2Input"
+   },
+   { 
+    "type": "DirectInputReader",
+    "id": "BA3Input"
+   },
+   { 
+    "type": "DirectInputReader",
+    "id": "BA4Input"
+   },
+   { 
+    "type": "DirectInputReader",
+    "id": "BA5Input"
+   },
+   {
+    "type": "LoggerTask",
+    "id": "BA1Output",
+    "encoder": {"type": "TimestampedLinesEncoder"},
+    "name": "sdcard/Ba1File"
+   },
+   {
+    "type": "LoggerTask",
+    "id": "BA2Output",
+    "encoder": {"type": "TimestampedLinesEncoder"},
+    "name": "sdcard/Ba2File"
+   },
+   {
+    "type": "LoggerTask",
+    "id": "BA3Output",
+    "encoder": {"type": "TimestampedLinesEncoder"},
+    "name": "sdcard/Ba3File"
+   },
+   {
+    "type": "LoggerTask",
+    "id": "BA4Output",
+    "encoder": {"type": "TimestampedLinesEncoder"},
+    "name": "sdcard/Ba4File"
+   },
+   {
+    "type": "LoggerTask",
+    "id": "BA5Output",
+    "encoder": {"type": "TimestampedLinesEncoder"},
+    "name": "sdcard/Ba5File"
+   }
+  ],
+  "connections": [
+   {
+    "type": "Connection",
+    "sourceTask": "BA1Input",
+    "destTask": "BA1Output"
+   },
+   {
+    "type": "Connection",
+    "sourceTask": "BA2Input",
+    "destTask": "BA2Output"
+   },
+   {
+    "type": "Connection",
+    "sourceTask": "BA3Input",
+    "destTask": "BA3Output"
+   },
+   {
+    "type": "Connection",
+    "sourceTask": "BA4Input",
+    "destTask": "BA4Output"
+   },
+   {
+    "type": "Connection",
+    "sourceTask": "BA5Input",
+    "destTask": "BA5Output"
+   }
+  ]
+ },
+ "CRNT+": {"modules": [
+  {
+   "id": "BA1Input",
+   "transmissionType": 2,
+   "proximityTreshold": 2,
+   "type": "BodyANT",
+   "deviceNr": 47646,
+   "channelNr": 0
+  },
+  {
+   "id": "BA2Input",
+   "transmissionType": 2,
+   "proximityTreshold": 2,
+   "type": "BodyANT",
+   "deviceNr": 47647,
+   "channelNr": 1
+  },
+  {
+   "id": "BA3Input",
+   "transmissionType": 2,
+   "proximityTreshold": 2,
+   "type": "BodyANT",
+   "deviceNr": 47648,
+   "channelNr": 2
+  },
+  {
+   "id": "BA4Input",
+   "transmissionType": 2,
+   "proximityTreshold": 2,
+   "type": "BodyANT",
+   "deviceNr": 47649,
+   "channelNr": 3
+  },
+  {
+   "id": "BA5Input",
+   "transmissionType": 2,
+   "proximityTreshold": 2,
+   "type": "BodyANT",
+   "deviceNr": 47650,
+   "channelNr": 4
+  }
+ ]}
+}
